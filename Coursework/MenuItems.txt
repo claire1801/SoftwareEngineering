@@ -22,7 +22,7 @@ Earl Grey Tea/DRINK021/2.50/A bright blend of black tea, fragrant bergamot and s
 Lemon Green Tea/DRINK022/2.50/Sweet lemon infusion with a subtle floral finish blended with green tea./None
 Diet Coke/DRINK023/1.50/500ml bottle of Diet Coke./None
 Coke/DRINK024/1.50/500ml bottle of coke./None
-San Pellegrino Lemon DRINK025//2.50 /Lemon flavoured fizzy water./None
+San Pellegrino Lemon /DRINK025/2.50 /Lemon flavoured fizzy water./None
 San Pellegrino Orange/DRINK026/2.50/Orange flavoured fizzy water./None
 Banana Pancakes/MEALS001/6.00/Soft and fluffy American style pancakes with banana slices, dusted with sugar./Milk
 Nutella Pancakes/MEALS002/6.50/Soft and fluffy American style pancakes with Nutella./Milk,nuts
