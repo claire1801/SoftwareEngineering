@@ -5,27 +5,27 @@ import java.util.TreeMap;
 
 public class MenuList {
 	
-	TreeMap<String, ? extends MenuItem> menuList;
+	TreeMap<String, ? extends MenuItems> menuList;
 
-	public MenuList(TreeMap<String, ? extends MenuItem> menuList) {
+	public MenuList(TreeMap<String, ? extends MenuItems> menuList) {
 		
 		this.menuList = menuList;
 	}
 
-	public TreeMap<String, ? extends MenuItem> getMenuList() {
+	public TreeMap<String, ? extends MenuItems> getMenuList() {
 		return menuList;
 	}
 
-	public MenuItem get(String key) {
+	public MenuItems get(String key) {
 	        return menuList.get(key);
 	}
 	 
-	public MenuItem remove(String key){
+	public MenuItems remove(String key){
 			return menuList.remove(key);
 	}
 
 	public void printAll() {
-		for (Map.Entry<String, ? extends MenuItem> entry : menuList.entrySet()) {
+		for (Map.Entry<String, ? extends MenuItems> entry : menuList.entrySet()) {
      	System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
 		}
 	}
