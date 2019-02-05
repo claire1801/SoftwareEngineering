@@ -1,31 +1,46 @@
-
 import java.util.ArrayList;
 
 public class OrderList {
-	private ArrayList<Order> orderList = new ArrayList<Order>();
 	
+	
+	private ArrayList<Order> orderList = new ArrayList<Order>();
 	
 	public ArrayList<Order> getOrderList() {
 		 return orderList;
 	}
 	
-	public void addOrder()
+	public void addOrder(Order order)
 	{
-		Order order = null; //delete as needed
+	
 		orderList.add(order);
 	}
 	
-	public void removeOrder()
+	public void removeOrder(Order order)
 	{
-		Order order = null; //delete as needed
+		
 		orderList.remove(order);
 	}
 	
-	public OrderList writeReport() {
-		return null; //change
-		
+	public String writeReport() {
+		String report = new String();
+		for(Order order : orderList) {
+			report += order.getOrderID();
+			report += "/";
+			report += order.getTimeStamp();
+			report += "/";
+			report += order.getCustomerID();
+			report += "/";
+			report += order.getItemID();
+			report += "/";
+			report += order.getCost();
+			report += "/";
+			report += order.getDiscountAmount();
+			report += "\n";
+			System.out.println(report);
+		}
+		return report;
 	}
-
-
+	
+	
 }
 
