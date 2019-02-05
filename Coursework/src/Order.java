@@ -24,7 +24,7 @@ public class Order {
 		- Syntax error, insert "... VariableDeclaratorId" to complete 
 		 FormalParameter
 		 */
-	public Order(String, int, timestamp, String, double, double)	
+	public Order(String orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)	
 	{
 		
 	}
@@ -34,28 +34,28 @@ public class Order {
 		return orderID;
 	}
 	
-	public void setOrderID(String)	//Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
+	public void setOrderID(String newOrderID)	//Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
 	{
-		String newOrderID = orderID;
+		 newOrderID = orderID;
 	}
 	
 	public int getCustomerID() {
 		return customerID;
 	}
 	
-	public void setCustomerID(int)	//Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
+	public void setCustomerID(int newCustomerID)	//Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
 	{
-		int newCustomerID = customerID;
+		 newCustomerID = customerID;
 	}
 	
-	public date getTimeStamp() 
+	public Timestamp getTimeStamp() 
 	{
 		return timestamp;
 	}
 	
-	public void setTimeStamp(date) //Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
+	public void setTimeStamp(Timestamp newTimeStamp) //Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
 	{
-		Date newTimeStamp = timestamp;
+		newTimeStamp = timestamp;
 	}
 	
 	public String getItemID()
@@ -63,9 +63,9 @@ public class Order {
 		return itemID;
 	}
 	
-	public void setItemID(String) //Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
+	public void setItemID(String newItemID) //Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
 	{
-		String newItemID = itemID;
+		newItemID = itemID;
 	}
 	
 	public double getCost()
@@ -73,9 +73,9 @@ public class Order {
 		return cost;
 	}	//Syntax error, insert "}" to complete ClassBody
 	
-	public void setCost(double)	//Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
+	public void setCost(double newCost)	//Syntax error, insert "... VariableDeclaratorId" to complete FormalParameterList
 	{
-		double newCost = cost;
+		newCost = cost;
 	}
 	
 	
