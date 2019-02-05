@@ -1,19 +1,19 @@
-Large Americano/DRINK001/3.00/Espresso shots topped with hot water to produce a light layer of crema./None
-Regular Americano/DRINK002/2.75/Espresso shots topped with hot water to produce a light layer of crema./None
-Large Cappuccino/DRINK003/3.50/Dark, rich espresso combined with steamed milk, topped with a deep layer of foam./Milk
-Regular Cappuccino/DRINK004/3.25/Dark, rich espresso combined with steamed milk, topped with a deep layer of foam./Milk
-Flat White/DRINK005/3.50/Expertly steamed milk poured over two shots of espresso and finished with delicate Rosetta art./Milk
-Double Espresso/DRINK006/2.50/A shot of espresso with a rich flavour and caramel-like sweetness./None
-Espresso/DRINK007/2.25/A shot of espresso with a rich flavour and caramel-like sweetness./None
-Large Mocha/DRINK008/3.75/Espresso combined with mocha syrup and steamed milk, topped with whipped cream./Milk
-Regular Mocha/DRINK009/3.50/Espresso combined with mocha syrup and steamed milk, topped with whipped cream./Milk
-Regular Latte/DRINK010/3.50/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam./Milk
-Large Hazelnut Latte/DRINK011/3.75/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with hazelnut syrup./Milk,nuts
-Regular Hazelnut Latte/DRINK012/3.50/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with hazelnut syrup./Milk,nuts
-Large Caramel Latte/DRINK013/3.75/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with caramel syrup./Milk
-Regular Caramel Latte/DRINK014/3.50/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with caramel syrup./Milk
-Large Chia Latte/DRINK015/4.00/Dark, rich espresso mixed with chia is balanced with steamed milk and topped with a light layer of foam./Milk
-Regular Chia Latte/DRINK016/3.75/Dark, rich espresso mixed with chia is balanced with steamed milk and topped with a light layer of foam./Milk
+Large Americano/COFEE001/3.00/Espresso shots topped with hot water to produce a light layer of crema./None
+Regular Americano/COFEE002/2.75/Espresso shots topped with hot water to produce a light layer of crema./None
+Large Cappuccino/COFEE003/3.50/Dark, rich espresso combined with steamed milk, topped with a deep layer of foam./Milk
+Regular Cappuccino/COFEE004/3.25/Dark, rich espresso combined with steamed milk, topped with a deep layer of foam./Milk
+Flat White/COFEE005/3.50/Expertly steamed milk poured over two shots of espresso and finished with delicate Rosetta art./Milk
+Double Espresso/COFEE006/2.50/A shot of espresso with a rich flavour and caramel-like sweetness./None
+Espresso/COFEE007/2.25/A shot of espresso with a rich flavour and caramel-like sweetness./None
+Large Mocha/COFEE008/3.75/Espresso combined with mocha syrup and steamed milk, topped with whipped cream./Milk
+Regular Mocha/COFEE009/3.50/Espresso combined with mocha syrup and steamed milk, topped with whipped cream./Milk
+Regular Latte/COFEE010/3.50/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam./Milk
+Large Hazelnut Latte/COFEE011/3.75/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with hazelnut syrup./Milk,nuts
+Regular Hazelnut Latte/COFEE012/3.50/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with hazelnut syrup./Milk,nuts
+Large Caramel Latte/COFEE013/3.75/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with caramel syrup./Milk
+Regular Caramel Latte/COFEE014/3.50/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with caramel syrup./Milk
+Large Chia Latte/COFEE015/4.00/Dark, rich espresso mixed with chia is balanced with steamed milk and topped with a light layer of foam./Milk
+Regular Chia Latte/COFEE016/3.75/Dark, rich espresso mixed with chia is balanced with steamed milk and topped with a light layer of foam./Milk
 Large Hot Chocolate/DRINK017/4.00/Steamed milk with mocha-flavoured syrup. Topped with whipped cream./Milk
 Regular Hot Chocolate/DRINK018/3.75/Steamed milk with mocha-flavoured syrup. Topped with whipped cream./Milk
 Breakfast Tea/DRINK019/2.50/Full-bodied black tea with rich, malty undertones./None
@@ -46,15 +46,15 @@ Tomato Soup/MEALS019/4.00/Creamy tomato soup./None
 Four Cheese Toast/MEALS020/5.00/Creamy four cheese toast./Milk
 Avocado and Chicken Salad/MEALS021/8.50/Avocado and chicken on a bed of leaves./None
 Greek Salad/MEALS022/7.50/Tomato, feta and olive salad./Milk
-Chocolate Muffin/SNACKS001/2.50/Chocolate Muffin/Milk
-Lemon Muffin/SNACKS002/2.50/Lemon Muffin/Milk
-Chocolate Doughnut/SNACKS003/2.50/Doughnut//Milk
-Plain Doughnut/SNACKS004/2.50/Doughnut/Milk
-Millionaires Shortbread/SNACKS005/3.00/Shortbread/Milk
-Shortbread/SNACKS006/2.50/Shortbread/Milk
-Oatmeal Cookie/SNACKS007/2.50/cookie/Milk
-Chocolate Chip Cookie/SNACKS008/2.50/Cookie/Milk
-Double Chocolate Chip Cookie/SNACKS009/2.50/Cookie/Milk
-White Chocolate Cookie/SNACKS010/2.50/Cookie/Milk
-Lemon Drizzle Cake/SNACKS011/3.00/Cake/Milk
-Carrot Cake/SNACKS012/3.00/Cake/Milk
+Chocolate Muffin/SNACK001/2.50/Chocolate Muffin/Milk
+Lemon Muffin/SNACK002/2.50/Lemon Muffin/Milk
+Chocolate Doughnut/SNACK003/2.50/Doughnut//Milk
+Plain Doughnut/SNACK004/2.50/Doughnut/Milk
+Millionaires Shortbread/SNACK005/3.00/Shortbread/Milk
+Shortbread/SNACK006/2.50/Shortbread/Milk
+Oatmeal Cookie/SNACK007/2.50/cookie/Milk
+Chocolate Chip Cookie/SNACK008/2.50/Cookie/Milk
+Double Chocolate Chip Cookie/SNACK009/2.50/Cookie/Milk
+White Chocolate Cookie/SNACK010/2.50/Cookie/Milk
+Lemon Drizzle Cake/SNACK011/3.00/Cake/Milk
+Carrot Cake/SNACK012/3.00/Cake/Milk

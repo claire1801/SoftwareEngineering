@@ -1,14 +1,18 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Manager {
+	
+
+	
 	public static OrderList orderList = new OrderList();
-	public static MenuList menuList = new MenuList();
+	public static MenuList menuList;
 	public static StaffList staffList = new StaffList();
 	public static CustomerList customerList = new CustomerList();
 	
@@ -24,6 +28,9 @@ public class Manager {
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	private static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+		
+		TreeMap<String, MenuItems> treeMenu = new TreeMap<>();
+		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -32,10 +39,24 @@ public class Manager {
 			String[] item = line.split("/");
 			double cost = Double.parseDouble(item[2]);
 			//System.out.println(item[0]);
-			MenuItem newMenuItem = new MenuItem(item[0],item[1],cost,item[3],item[4]);//wrong in class diagram
-			menuList.addItem(newMenuItem);
+			
+			if(item[1].substring(0, 4).equals("DRINK")||item[1].substring(0, 4).equals("COFEE")) {
+				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
+				treeMenu.put(item[1], newMenuItem);
+			}
+			else if(item[1].substring(0, 4).equals("MEALS")) {
+				MenuItems newMenuItem = new Meals(item[0],item[1],cost,item[3],item[4]);
+				treeMenu.put(item[1], newMenuItem);
+			}
+			else if(item[1].substring(0, 4).equals("SNACK")) {
+				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
+				treeMenu.put(item[1], newMenuItem);
+			}
+			
+		//	menuList.addItem(newMenuItem);
 		}
 		scanner.close();
+		menuList = new MenuList(treeMenu);
 	}
 	
 	/**
@@ -64,7 +85,7 @@ public class Manager {
 			//System.out.println(timestamp);
 			
 			Order newOrder = new Order(order[0],customerID, timestamp, order[3],cost,discount);
-			OrderList.addOrder(newOrder);
+			orderList.addOrder(newOrder);
 		}
 		scanner.close();
 		
@@ -114,9 +135,11 @@ public class Manager {
 			String[] customer = line.split("/");
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
+			boolean member = Boolean.parseBoolean(customer[3]);
 			//System.out.println(customer[0]);
-			Customer newCustomer = new Customer(customer[0],ID,noDrinks);
-			customerList.addCustomer(newCustomer);
+			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
+			Customer newCustomer = new Customer(ID,member,noDrinks);
+			customerList.addCustomer(customer[0],newCustomer);//name?
 
 		}
 		scanner.close();
@@ -147,10 +170,10 @@ public class Manager {
 	}
 	
 	public void writeReport() {
-		menuList.writeReport("MenuItems.txt");
-		orderList.writeReport("orderList.txt");
-		staffList.writeReport("StaffList.txt");
-		customerList.writeReport("customerList.txt");
+		//menuList.writeReport("MenuItems.txt");
+		//orderList.writeReport("orderList.txt");
+		//staffList.writeReport("StaffList.txt");
+		//customerList.writeReport("customerList.txt");
 		
 	}
 
