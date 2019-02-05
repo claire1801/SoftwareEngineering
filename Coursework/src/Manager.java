@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.Date;
+import java.util.Hashtable;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +15,7 @@ public class Manager {
 	public static OrderList orderList = new OrderList();
 	public static MenuList menuList;
 	public static StaffList staffList = new StaffList();
-	public static CustomerList customerList = new CustomerList();
+	public static CustomerList customerList;
 	
 	
 	public static GUI gui = new  GUI();
@@ -39,17 +40,22 @@ public class Manager {
 			String[] item = line.split("/");
 			double cost = Double.parseDouble(item[2]);
 			//System.out.println(item[0]);
+			//String code = item[1].
 			
-			if(item[1].substring(0, 4).equals("DRINK")||item[1].substring(0, 4).equals("COFEE")) {
+			if(item[1].substring(0, 5).equals("DRINK")||item[1].substring(0, 5).equals("COFEE")) {
 				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
+				//System.out.println("Drink");
+				//System.out.println(item[0]);
 				treeMenu.put(item[1], newMenuItem);
 			}
-			else if(item[1].substring(0, 4).equals("MEALS")) {
+			else if(item[1].substring(0, 5).equals("MEALS")) {
 				MenuItems newMenuItem = new Meals(item[0],item[1],cost,item[3],item[4]);
+				//System.out.println("meal");
 				treeMenu.put(item[1], newMenuItem);
 			}
-			else if(item[1].substring(0, 4).equals("SNACK")) {
+			else if(item[1].substring(0, 5).equals("SNACK")) {
 				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
+				//System.out.println("snack");
 				treeMenu.put(item[1], newMenuItem);
 			}
 			
@@ -127,6 +133,8 @@ public class Manager {
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+		Hashtable<String, Customer> customerList = new Hashtable<>();
+		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -139,7 +147,9 @@ public class Manager {
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,member,noDrinks);
-			customerList.addCustomer(customer[0],newCustomer);//name?
+			
+			
+			customerList.put(customer[0],newCustomer);//name?
 
 		}
 		scanner.close();
