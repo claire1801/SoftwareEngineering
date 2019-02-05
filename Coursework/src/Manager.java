@@ -40,15 +40,15 @@ public class Manager {
 			double cost = Double.parseDouble(item[2]);
 			//System.out.println(item[0]);
 			
-			if(item[1].equals("DRINK")||item[1].equals("COFEE")) {
+			if(item[1].substring(0, 4).equals("DRINK")||item[1].substring(0, 4).equals("COFEE")) {
 				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
 				treeMenu.put(item[1], newMenuItem);
 			}
-			else if(item[1].equals("MEALS")) {
+			else if(item[1].substring(0, 4).equals("MEALS")) {
 				MenuItems newMenuItem = new Meals(item[0],item[1],cost,item[3],item[4]);
 				treeMenu.put(item[1], newMenuItem);
 			}
-			else if(item[1].equals("SNACK")) {
+			else if(item[1].substring(0, 4).equals("SNACK")) {
 				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
 				treeMenu.put(item[1], newMenuItem);
 			}
@@ -135,7 +135,7 @@ public class Manager {
 			String[] customer = line.split("/");
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
-			boolean member = true;
+			boolean member = Boolean.parseBoolean(customer[3]);
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,member,noDrinks);
