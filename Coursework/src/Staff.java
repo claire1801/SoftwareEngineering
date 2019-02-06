@@ -1,3 +1,4 @@
+
 /**
  * This is the staff class
  * 
@@ -44,6 +45,8 @@ public class Staff {
 	
 	public void setStaffLastName(String lName) {
 		this.lastName = lName;
+
+
 	}
 
 }
