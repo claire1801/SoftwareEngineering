@@ -82,15 +82,15 @@ public class Basket {
 			if (unconfirmedOrder.size() > 2) {
 				// possible sub function here at later point, currently coded following the plan
 				//could also consider Orders holding MenuItem objects rather than just ID 
-				if(item.getItemID().substring(0, 4).equals("MEALS")) {
+				if(item.getItemID().substring(0, 5).equals("MEALS")) {
 					countOfFoodItems++;
 					unDiscountedCostForMealDealItems += item.getCost();
 				}
-				else if(item.getItemID().substring(0, 4).equals("DRINK")) {
+				else if(item.getItemID().substring(0, 5).equals("DRINK")) {
 					countOfSoftDrinks++;
 					unDiscountedCostForMealDealItems += item.getCost();
 				}
-				else if(item.getItemID().substring(0, 4).equals("SNACK")) {
+				else if(item.getItemID().substring(0, 5).equals("SNACK")) {
 					countOfSnacks++;
 					unDiscountedCostForMealDealItems += item.getCost();
 				}
@@ -99,11 +99,11 @@ public class Basket {
 			// coffee loyalty scheme discount
 			// would be nice to maybe break these into sub functions at later point, although may mean need for globals.      
 			// this.coffeeLoyaltyCard(customer, item);
-			if(item.getItemID().substring(0, 3).equals("COFEE") && customer.coffeeLoyaltyCounter() == 4) {
+			if(item.getItemID().substring(0, 5).equals("COFEE") && customer.getNumberPreviousCoffees() == 4) {
 				coffeeLoyaltyDiscount += item.getCost();
-				customer.setCoffeeLoyaltyCounter(0);
+				customer.setNumberPreviousCoffees(0);
 			} else {
-				customer.setCoffeeLoyaltyCounter(customer.coffeeLoyaltyCounter() + 1);
+				customer.setNumberPreviousCoffees(customer.getNumberPreviousCoffees() + 1);
 			}
 		}
 
