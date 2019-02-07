@@ -21,6 +21,18 @@ public class OrderList {
 		orderList.remove(order);
 	}
 	
+	public int totalSales() {
+		return orderList.size();
+	}
+	public double totalIncome() {
+		double total = 0;
+		for(Order order : orderList) {
+			total += order.getCost();
+		}
+		
+		return total;
+	}
+	
 	public String writeReport() {
 		String report = new String();
 		for(Order order : orderList) {

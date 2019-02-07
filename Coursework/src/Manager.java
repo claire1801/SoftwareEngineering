@@ -1,6 +1,9 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.Date;
@@ -181,13 +184,66 @@ public class Manager {
 		gui.initGUI();
 
 	}
+	/**
+	 * runs shutdown procedure
+	 */
 	
-	public void writeReport() {
-		//menuList.writeReport("MenuItems.txt");
-		//orderList.writeReport("orderList.txt");
-		//staffList.writeReport("StaffList.txt");
-		//customerList.writeReport("customerList.txt");
+	public void exit() {
+		updateFiles();
+		writeReport("report.txt");
+		System.exit(0);
 		
 	}
+	
+	
+
+	
+	public void updateFiles() {
+		String order = orderList.writeReport();
+		printToFile("orderList.txt",order);
+		
+		String menu = menuList.writeReport();
+		printToFile("MenuItems.txt",menu);
+		
+//		String menu = staffList.writeReport();    // not needed?
+//		printToFile("StaffList.txt",menu);
+		
+		String customer = customerList.writeReport();
+		printToFile("customerList.txt",customer);
+
+		
+	}
+	
+	public void printToFile(String filename, String details)  {
+		try {
+			FileWriter fw = new FileWriter(filename);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.print(details);
+			pw.close();
+		} catch (FileNotFoundException e1) {
+			System.out.println("input file does not exist!");
+			System.exit(1);
+		}catch (IOException e2) {
+			e2.printStackTrace();
+			System.exit(1);
+		}
+		
+	}
+	
+	
+	public void writeReport(String filename) {
+		String details = "Summary of Cafe\n";
+		int sales = orderList.totalSales();
+		double income = orderList.totalIncome();
+		details += "In total there have been " + sales + " made.\n";
+		details += "This gives a total income of " + income + " (£)\n";
+		details += "The following is a full list of all items in the menu:\n";
+		details += menuList.writeReport();
+		
+		
+		
+	}
+	
+	
 
 }
