@@ -1,47 +1,48 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class MenuList {
 	
-	TreeMap<String, ? extends MenuItems> menuList;
+	private static TreeMap<String, MenuItems> menuList;
 
-	public MenuList(TreeMap<String, ? extends MenuItems> menuList) {
+	public MenuList(TreeMap<String, MenuItems> menuList) {
 		
 		this.menuList = menuList;
 	}
 
-	public TreeMap<String, ? extends MenuItems> getMenuList() {
+	public TreeMap<String, MenuItems> getMenuList() {
 		return menuList;
 	}
 
-	public MenuItems get(String key) {
+	public void addItem(String key, MenuItems value) {
+		menuList.put(key, value);
+	}
+	
+	public MenuItems getItem(String key) {
 	        return menuList.get(key);
 	}
 	 
-	public MenuItems remove(String key){
-			return menuList.remove(key);
+	public void remove(String key){
+			menuList.remove(key);
 	}
 
 	public void printAll() {
-		for (Map.Entry<String, ? extends MenuItems> entry : menuList.entrySet()) {
+		for (Map.Entry<String, MenuItems> entry : menuList.entrySet()) {
      	System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
 		}
 	}
 	
-	public void writeReport() {
-		FileWriter fw;
-
-		try {
-			fw = new FileWriter("MenuReport.txt");
-			fw.write(String.format("%-40s %-5s \n\n", "Menu Item", "Ordered"));
-		
-			fw.close();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
+	public String writeReport() {
+		String report = new String();
+		for(Map.Entry<String, MenuItems> entry : menuList.entrySet()){
+		report += ((MenuItems) entry).getName() + "/";
+		report += entry.getKey() + "/";
+		//report += entry.getValue() + "/";
+		report += ((MenuItems) entry).getCost() + "/";
+		report += ((MenuItems) entry).getDescription() + "/";
+		report += ((MenuItems) entry).getAllergens();
 		}
-	
-	}	
-	
+		
+		return report;
+	}
 }

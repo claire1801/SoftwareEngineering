@@ -1,7 +1,6 @@
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Hashtable;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class CustomerList {
 	Hashtable<Integer, Customer> customerList;
@@ -14,33 +13,34 @@ public class CustomerList {
 		return customerList;
 	}
 
-	public Customer addCustomer(Integer key, Customer value) {
-		return customerList.put(key, value);
+	public void addCustomer(Integer key, Customer value) {
+		customerList.put(key, value);
 	}
 
 	public Customer getCustomer(Integer key) {
         return customerList.get(key);
 	}
 	
-	public Customer removeCustomer(Integer key) {
-		return customerList.remove(key);
+	public void removeCustomer(Integer key) {
+		customerList.remove(key);
 	}
 	
-	public void writeReport() {
-		FileWriter fw;
 
-		try {
-			fw = new FileWriter("CustomerReport.txt");
-
-			// formatting of table
-			fw.write(String.format("%-5s %-40s %-20s %-20s \n\n", "Customer", "Orders", "Discount", "Total Amount"));
-		
-			fw.close();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
+	
+	public String writeReport() {
+		String report = new String();
+		for(Entry<Integer, Customer> customer : customerList.entrySet()){
+		//report += customer.getValue();
+		report += ((Customer) customer).getName() + "/";
+		report += customer.getKey() + "/";
+		report += ((Customer) customer).getType() + "/";
+		report += ((Customer) customer).getNumberPreviousCoffees();
+	
 		}
+		
+		return report;
+				
 	}
-
 	
 	
 	
