@@ -6,7 +6,7 @@ public class Customer {
 	private int numberPreviousCoffees;
 	
 	public Customer(int customerID, boolean member, int numberPreviousCoffees) {
-		this.customerId = customerId;
+		this.customerId = customerID;
 		this.member = member;
 		this.numberPreviousCoffees = numberPreviousCoffees;
 	}
