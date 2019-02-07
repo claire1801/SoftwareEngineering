@@ -209,14 +209,14 @@ public class Manager {
 		String order = orderList.writeReport();
 		printToFile("orderList.txt",order);
 		
-//		String menu = menuList.writeReport();
-//		printToFile("MenuItems.txt",menu);
+		String menu = menuList.writeReport();
+		printToFile("MenuItems.txt",menu);
 //		
 //		String menu = staffList.writeReport();    // not needed?
 //		printToFile("StaffList.txt",menu);
 //		
-//		String customer = customerList.writeReport();
-//		printToFile("customerList.txt",customer);
+		String customer = customerList.writeReport();
+		printToFile("customerList.txt",customer);
 
 		
 	}
@@ -249,9 +249,9 @@ public class Manager {
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + " made.\n";
-		details += "This gives a total income of " + income + " (£)\n";
+		details += "This gives a total income of " + income + " (Â£)\n";
 		details += "The following is a full list of all items in the menu:\n";
-		//details += menuList.writeReport();
+		details += menuList.writeReport();
 		
 		printToFile(filename, details);
 		
