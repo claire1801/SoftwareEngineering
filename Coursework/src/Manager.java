@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -112,10 +113,14 @@ public class Manager {
 			String line = scanner.nextLine();
 			String[] staff = line.split("/");
 			int ID = Integer.parseInt(staff[1]);
+			String name = staff[0];
+			String[] names = name.split("\\W+");//split name into first last using whitespace
+			int lastIndex = names.length - 1;// index of last name
 			//int noDrinks = Integer.parseInt(staff[2]);
-			//System.out.println(staff[0]);
-			Staff staffmember = new Staff(staff[0], ID);
-			staffList.addStaff(staffmember);
+			//System.out.print(names[0] + " ");
+			//System.out.println(names[lastIndex]);
+			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
+			staffList.addStaffToList(staffmember);
 			
 			
 			
@@ -147,8 +152,6 @@ public class Manager {
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,member,noDrinks);
-			
-			
 			customersList.put(customer[0],newCustomer);//name?
 
 		}
