@@ -38,9 +38,9 @@ public class OrderList {
 		for(Order order : orderList) {
 			report += order.getOrderID();
 			report += "/";
-			report += order.getTimeStamp();
-			report += "/";
 			report += order.getCustomerID();
+			report += "/";
+			report += order.getTimeStamp();
 			report += "/";
 			report += order.getItemID();
 			report += "/";
@@ -48,7 +48,7 @@ public class OrderList {
 			report += "/";
 			report += order.getDiscountAmount();
 			report += "\n";
-			System.out.println(report);
+			//System.out.println(report);
 		}
 		return report;
 	}

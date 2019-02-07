@@ -124,10 +124,6 @@ public class Manager {
 			//System.out.println(names[lastIndex]);
 			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
 			staffList.addStaffToList(staffmember);
-			
-			
-			
-			
 		}
 		scanner.close();
 		
@@ -151,10 +147,19 @@ public class Manager {
 			String[] customer = line.split("/");
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
-			boolean member = Boolean.parseBoolean(customer[3]);
+			String member = customer[3];
+			if(member.charAt(0) == 'E') {
+				member = "Employee";
+			}else if(member.charAt(0) == 'S') {
+				member = "Student";
+			}else if(member.charAt(0) == 'M') {
+				member = "Member";
+			}
+			
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,member,noDrinks);
+			//System.out.println(newCustomer.isMember());
 			customersList.put(ID,newCustomer);//name?
 
 		}
@@ -180,7 +185,7 @@ public class Manager {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+		progExit();
 		gui.initGUI();
 
 	}
@@ -188,7 +193,7 @@ public class Manager {
 	 * runs shutdown procedure
 	 */
 	
-	public void exit() {
+	public static void progExit() {
 		updateFiles();
 		writeReport("report.txt");
 		System.exit(0);
@@ -196,25 +201,33 @@ public class Manager {
 	}
 	
 	
-
+	/**
+	 * update all data files
+	 */
 	
-	public void updateFiles() {
+	public static void updateFiles() {
 		String order = orderList.writeReport();
 		printToFile("orderList.txt",order);
 		
-		String menu = menuList.writeReport();
-		printToFile("MenuItems.txt",menu);
-		
+//		String menu = menuList.writeReport();
+//		printToFile("MenuItems.txt",menu);
+//		
 //		String menu = staffList.writeReport();    // not needed?
 //		printToFile("StaffList.txt",menu);
-		
-		String customer = customerList.writeReport();
-		printToFile("customerList.txt",customer);
+//		
+//		String customer = customerList.writeReport();
+//		printToFile("customerList.txt",customer);
 
 		
 	}
 	
-	public void printToFile(String filename, String details)  {
+	/**
+	 * Write report
+	 * @param filename
+	 * @param details
+	 */
+	
+	public static void printToFile(String filename, String details)  {
 		try {
 			FileWriter fw = new FileWriter(filename);
 			PrintWriter pw = new PrintWriter(fw);
@@ -231,14 +244,16 @@ public class Manager {
 	}
 	
 	
-	public void writeReport(String filename) {
+	public static  void writeReport(String filename) {
 		String details = "Summary of Cafe\n";
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + " made.\n";
 		details += "This gives a total income of " + income + " (£)\n";
 		details += "The following is a full list of all items in the menu:\n";
-		details += menuList.writeReport();
+		//details += menuList.writeReport();
+		
+		printToFile(filename, details);
 		
 		
 		
