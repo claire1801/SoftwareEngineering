@@ -138,7 +138,7 @@ public class Manager {
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
-		Hashtable<String, Customer> customersList = new Hashtable<>();
+		Hashtable<Integer, Customer> customersList = new Hashtable<>();
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
@@ -152,7 +152,7 @@ public class Manager {
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,member,noDrinks);
-			customersList.put(customer[0],newCustomer);//name?
+			customersList.put(ID,newCustomer);//name?
 
 		}
 		scanner.close();

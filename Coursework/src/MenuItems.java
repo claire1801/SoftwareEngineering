@@ -1,4 +1,4 @@
-package cafe;
+//package cafe;
 
 public abstract class MenuItems {
 	
