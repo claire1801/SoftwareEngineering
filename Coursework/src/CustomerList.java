@@ -29,14 +29,23 @@ public class CustomerList {
 	
 	public String writeReport() {
 		String report = new String();
-		for(Entry<Integer, Customer> customer : customerList.entrySet()){
-		//report += customer.getValue();
-		report += ((Customer) customer).getName() + "/";
-		report += customer.getKey() + "/";
-		report += ((Customer) customer).getType() + "/";
-		report += ((Customer) customer).getNumberPreviousCoffees();
-	
+		
+		for(Customer customer: customerList.values()) {
+			report += customer.getName() + "/";
+			report += customer.getCustomerId() + "/";
+			report += customer.getNumberPreviousCoffees()+ "/";
+			report += customer.getType() + "\n";
+			
+			
 		}
+//		for(Entry<Integer, Customer> customer : customerList.entrySet()){
+//		//report += customer.getValue();
+//		report += ((Customer) customer).getName() + "/";
+//		report += customer.getKey() + "/";
+//		report += ((Customer) customer).getType() + "/";
+//		report += ((Customer) customer).getNumberPreviousCoffees();
+//	
+//		}
 		
 		return report;
 				
