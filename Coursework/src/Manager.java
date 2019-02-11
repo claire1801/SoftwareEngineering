@@ -38,10 +38,16 @@ public class Manager {
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
+		int counter = 0;
 		
 		while (scanner.hasNextLine()) {
+			
 			String line = scanner.nextLine();
 			String[] item = line.split("/");
+			if(item.length < 5) {
+				continue;
+			}
+			
 			double cost = Double.parseDouble(item[2]);
 			//System.out.println(item[0]);
 			//String code = item[1].
@@ -62,6 +68,8 @@ public class Manager {
 				//System.out.println("snack");
 				treeMenu.put(item[1], newMenuItem);
 			}
+			counter += 1;
+			//System.out.println(counter);
 			
 		//	menuList.addItem(newMenuItem);
 		}
@@ -84,6 +92,9 @@ public class Manager {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] order = line.split("/");
+			if(order.length < 5) {
+				continue;
+			}
 			double cost = Double.parseDouble(order[4]);
 			double discount = Double.parseDouble(order[5]);
 			int customerID = Integer.parseInt(order[1]);
@@ -145,20 +156,26 @@ public class Manager {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] customer = line.split("/");
+			if(customer.length < 2) {
+				continue;
+			}
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
 			String member = customer[3];
+			MembershipType memType;
 			if(member.charAt(0) == 'E') {
-				member = "Employee";
+				memType = MembershipType.EMPLOYEE;
 			}else if(member.charAt(0) == 'S') {
-				member = "Student";
-			}else if(member.charAt(0) == 'M') {
-				member = "Member";
+				memType = MembershipType.STUDENT;
+			}else  {
+				memType = MembershipType.MEMBER;
 			}
+			
+			 
 			
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
-			Customer newCustomer = new Customer(ID,member,noDrinks);
+			Customer newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
 			//System.out.println(newCustomer.isMember());
 			customersList.put(ID,newCustomer);//name?
 
@@ -177,6 +194,7 @@ public class Manager {
 			readMenuItems("MenuItems.txt");
 			readOrders("orderList.txt");
 		} catch (NumberFormatException e) {
+			
 			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			e.printStackTrace();
@@ -248,8 +266,8 @@ public class Manager {
 		String details = "Summary of Cafe\n";
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
-		details += "In total there have been " + sales + " made.\n";
-		details += "This gives a total income of " + income + " (£)\n";
+		details += "In total there have been " + sales + "orders made.\n";
+		details += "This gives a total income of " + income + " (£)\n\n";
 		details += "The following is a full list of all items in the menu:\n";
 		details += menuList.writeReport();
 		

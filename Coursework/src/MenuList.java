@@ -34,14 +34,23 @@ public class MenuList {
 	
 	public String writeReport() {
 		String report = new String();
-		for(Map.Entry<String, MenuItems> entry : menuList.entrySet()){
-		report += ((MenuItems) entry).getName() + "/";
-		report += entry.getKey() + "/";
-		//report += entry.getValue() + "/";
-		report += ((MenuItems) entry).getCost() + "/";
-		report += ((MenuItems) entry).getDescription() + "/";
-		report += ((MenuItems) entry).getAllergens();
+		for(MenuItems entry: menuList.values()) {
+			report += entry.getName() + "/";
+			report += entry.getID()+ "/";
+			report += entry.getCost() + "/";
+			report += entry.getDescription() + "/";
+			report += entry.getAllergens() + "\n";
+			
 		}
+		
+//		for(Map.Entry<String, MenuItems> entry : menuList.entrySet()){
+//		report += ((MenuItems) entry).getName() + "/";
+//		report += entry.getKey() + "/";
+//		//report += entry.getValue() + "/";
+//		report += ((MenuItems) entry).getCost() + "/";
+//		report += ((MenuItems) entry).getDescription() + "/";
+//		report += ((MenuItems) entry).getAllergens();
+//		}
 		
 		return report;
 	}
