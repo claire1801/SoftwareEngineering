@@ -15,6 +15,14 @@ public class CustomerList {
 
 	public void addCustomer(Integer key, Customer value) {
 		customerList.put(key, value);
+		if(value == null) {
+			throw new IllegalArgumentException ("Can not add a new customer as not all the details are provided");
+		}
+		if(key == null) {
+			throw new IllegalArgumentException ("Key must contain a customer ID");
+		}
+		
+		
 	}
 
 	public Customer getCustomer(Integer key) {
@@ -23,9 +31,12 @@ public class CustomerList {
 	
 	public void removeCustomer(Integer key) {
 		customerList.remove(key);
+		if(!customerList.containsKey(key)) {
+			throw new IllegalArgumentException ("Customer ID doesn't exist");
+		}
 	}
 	
-
+	
 	
 	public String writeReport() {
 		String report = new String();
@@ -50,8 +61,6 @@ public class CustomerList {
 		return report;
 				
 	}
-	
-	
-	
 
 }
+
