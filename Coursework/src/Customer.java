@@ -1,4 +1,3 @@
-
 public class Customer {
 	
 	
@@ -9,6 +8,23 @@ public class Customer {
 	
 	
 	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
+		if(customerID < 1 || customerID > 1000) {
+			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 1000");
+		}
+		
+		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
+			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
+		}
+		
+		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 9) {
+			throw new IllegalStateException("Number of previous coffees must be between 0 and 9");
+		}
+		
+		if(name.length() == 0) {
+          throw new IllegalStateException("Name can not be blank");
+		}
+		
+	
 		this.customerID = customerID;
 		this.member = member;
 		this.numberPreviousCoffees = numberPreviousCoffees;
