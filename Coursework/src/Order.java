@@ -6,10 +6,11 @@
  *
  */
 import java.sql.Timestamp;
+import java.util.Hashtable;
 
 
 
-public class Order {
+public class Order{
 	
 	private String orderID;
 	private int customerID;
@@ -19,7 +20,7 @@ public class Order {
 	private double discountAmount;
 
 	
-	public Order(String orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)	
+	public Order(String orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)
 	{
 		try {
 		this.orderID = orderID;
@@ -29,7 +30,8 @@ public class Order {
 		this.cost = cost;
 		this.discountAmount = discountAmount;
 		}
-		catch (IllegalArgumentException e) {
+		catch (IllegalArgumentException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 		catch (NullPointerException e)
@@ -66,10 +68,18 @@ public class Order {
 		//needs changing if customer ID can be 000 for example.
 		if(!(customerID > 0))	
 		{
-			throw new NullPointerException("Could not get customerID as customerID cannot be 0");
+			throw new IllegalStateException("Cannot get customerID as ID does not exist");
 		}else {
 			return customerID;
-		}	
+		}
+			/*if(CustomerList.containsKey(customerID key))
+			{
+				throw new CustomerDoesNotExistException(customerID);
+			}
+			else
+			{
+				return customerID;
+			}*/
 	}
 	
 	public void setCustomerID(int newCustomerID)	
