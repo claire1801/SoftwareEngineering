@@ -11,11 +11,19 @@ public class MenuList {
 	}
 
 	public TreeMap<String, MenuItems> getMenuList() {
+		String message = "";
+		try { return menuList; }
+		catch (NullPointerException e) {
+			message = e.getMessage() + "Could not get menuList";	
+			System.out.println(message); }
 		return menuList;
 	}
 
 	public void addItem(String key, MenuItems value) {
 		menuList.put(key, value);
+		if (!menuList.containsKey(key)) {
+			throw new IllegalArgumentException ("Item does not exist");
+		}
 	}
 	
 	public MenuItems getItem(String key) {
@@ -23,8 +31,11 @@ public class MenuList {
 	}
 	 
 	public void remove(String key){
-			menuList.remove(key);
-	}
+		menuList.remove(key);
+		if (!menuList.containsKey(key)) {
+			throw new IllegalArgumentException ("Item does not exist");
+		}
+}
 
 	public void printAll() {
 		for (Map.Entry<String, MenuItems> entry : menuList.entrySet()) {
@@ -43,14 +54,6 @@ public class MenuList {
 			
 		}
 		
-//		for(Map.Entry<String, MenuItems> entry : menuList.entrySet()){
-//		report += ((MenuItems) entry).getName() + "/";
-//		report += entry.getKey() + "/";
-//		//report += entry.getValue() + "/";
-//		report += ((MenuItems) entry).getCost() + "/";
-//		report += ((MenuItems) entry).getDescription() + "/";
-//		report += ((MenuItems) entry).getAllergens();
-//		}
 		
 		return report;
 	}
