@@ -61,27 +61,40 @@ public class OrderList {
 	}
 	
 	public String writeReport() {
-		String report = new String();
-		for(Order order : orderList) {
-			report += order.getOrderID();
-			report += "/";
-			report += order.getCustomerID();
-			report += "/";
-			report += order.getTimeStamp();
-			report += "/";
-			report += order.getItemID();
-			report += "/";
-			report += order.getCost();
-			report += "/";
-			report += order.getDiscountAmount();
-			report += "\n";
-			//System.out.println(report);
+
+		try {
+			for(Order order : orderList) {
+				report += order.getOrderID();
+				report += "/";
+				report += order.getTimeStamp();
+				report += "/";
+				report += order.getCustomerID();
+				report += "/";
+				report += order.getItemID();
+				report += "/";
+				report += order.getCost();
+				report += "/";
+				report += order.getDiscountAmount();
+				report += "\n";
+				System.out.println(report);
+			}
+
 		}
-		if (orderList.size() == 0)
-		{
-			throw new IndexOutOfBoundsException("Cannot generate order report, orderList is empty");
+		catch(IndexOutOfBoundsException e){
+				System.out.println(e.getMessage());
+				System.out.println("Cannot generate order report, orderList is empty");
+	            System.exit(1);
 		}
 		return report;
+		
+		
+		
+		
+		//if (orderList.size() == 0)
+		//{
+		//	throw new IndexOutOfBoundsException("Cannot generate order report, orderList is empty");
+		//}
+		
 	}
 	
 	
