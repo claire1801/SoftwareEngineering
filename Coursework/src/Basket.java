@@ -107,7 +107,7 @@ public class Basket {
 		
 		// members discount
 		double tempDiscountedBill = unDiscountedBill - mealDealDiscount - coffeeLoyaltyDiscount;
-		memberDiscount = customer.getMembershipType().getDiscount() * tempDiscountedBill;
+		memberDiscount = customer.MembershipType().getDiscount() * tempDiscountedBill;
 
 		
 		// total discount
