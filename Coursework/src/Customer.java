@@ -1,3 +1,4 @@
+
 public class Customer {
 	
 	
@@ -21,7 +22,7 @@ public class Customer {
 		}
 		
 		if(name.length() == 0) {
-          throw new IllegalStateException("Name can not be blank");
+         		throw new IllegalStateException("Name can not be blank");
 		}
 		
 	
@@ -61,6 +62,21 @@ public class Customer {
 
 	public void setType(MembershipType member) {
 		this.member = member;
+	}
+	
+	public double getDiscount() {
+		double discount = 0;
+		if(member == MembershipType.STUDENT) {
+			discount = 0.80;
+		}
+		else if(member == MembershipType.MEMBER) {
+			discount = 0.75;
+		}
+		else if(member == MembershipType.EMPLOYEE){
+			discount = 0.70;
+		}	
+		
+		return discount;
 	}
 	
 }
