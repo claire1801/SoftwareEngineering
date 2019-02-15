@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 /**
@@ -108,7 +107,7 @@ public class Basket {
 		
 		// members discount
 		double tempDiscountedBill = unDiscountedBill - mealDealDiscount - coffeeLoyaltyDiscount;
-		memberDiscount = customer.getDiscount() * tempDiscountedBill;
+		memberDiscount = customer.getMembershipType().getDiscount() * tempDiscountedBill;
 
 		
 		// total discount
