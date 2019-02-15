@@ -13,9 +13,9 @@ public class Customer {
 			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 1000");
 		}
 		
-		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
-			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
-		}
+//		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
+//			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
+//		}
 		
 		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 9) {
 			throw new IllegalStateException("Number of previous coffees must be between 0 and 9");
