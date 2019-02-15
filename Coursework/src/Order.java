@@ -1,7 +1,16 @@
+/**
+ * This is the Order class
+ * 
+ *  
+ * @author Jamie Morse (jtm1)
+ *
+ */
 import java.sql.Timestamp;
+import java.util.Hashtable;
 
-public class Order {
-	
+
+
+public class Order{
 	
 	private String orderID;
 	private int customerID;
@@ -11,19 +20,29 @@ public class Order {
 	private double discountAmount;
 
 	
-	public Order(String orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)	
+	public Order(String orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)
 	{
+		try {
 		this.orderID = orderID;
 		this.customerID = customerID;
 		this.timestamp = timestamp;
 		this.itemID = itemID;
 		this.cost = cost;
 		this.discountAmount = discountAmount;
+		}
+		catch (IllegalArgumentException e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public String getOrderID()
-	{
-		return orderID;
+	{ 
+		return orderID;	
 	}
 	
 	public void setOrderID(String newOrderID)	
@@ -38,7 +57,7 @@ public class Order {
 	
 	public void setCustomerID(int newCustomerID)	
 	{
-		 newCustomerID = customerID;
+		newCustomerID = customerID;
 	}
 	
 	public Timestamp getTimeStamp() 
@@ -51,7 +70,7 @@ public class Order {
 		newTimeStamp = timestamp;
 	}
 	
-	public String getItemID()
+	public String getItemID() 
 	{
 		return itemID;
 	}
@@ -61,7 +80,7 @@ public class Order {
 		newItemID = itemID;
 	}
 	
-	public double getCost()
+	public double getCost() 
 	{
 		return cost;
 	}	
@@ -71,16 +90,14 @@ public class Order {
 		newCost = cost;
 	}
 	
+	public double getDiscountAmount() 
+	{
+		return discountAmount;
+	}
+	
 	public void setDiscount(double newDiscountAmount)
 	{
 		newDiscountAmount = discountAmount;
 	}
 	
-	public double getDiscountAmount()
-	{
-		return discountAmount;
-	}
-	
-	
-
 }	
