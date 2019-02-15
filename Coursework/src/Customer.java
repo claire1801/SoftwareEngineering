@@ -1,30 +1,43 @@
 
 public class Customer {
 	
-	private int customerId;
-	private boolean member;
-	private int numberPreviousCoffees;
 	
-	public Customer(int customerID, boolean member, int numberPreviousCoffees) {
-		this.customerId = customerId;
+	private int customerID; 
+	private MembershipType member; 
+	private int numberPreviousCoffees;
+	private String name;
+	
+	
+	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
+		if(customerID < 1 || customerID > 1000) {
+			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 1000");
+		}
+		
+		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
+			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
+		}
+		
+		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 9) {
+			throw new IllegalStateException("Number of previous coffees must be between 0 and 9");
+		}
+		
+		if(name.length() == 0) {
+         		throw new IllegalStateException("Name can not be blank");
+		}
+		
+	
+		this.customerID = customerID;
 		this.member = member;
 		this.numberPreviousCoffees = numberPreviousCoffees;
+		this.name = name;
 	}
 
 	public int getCustomerId() {
-		return customerId;
+		return customerID;
 	}
 
 	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	public boolean isMember() {
-		return member;
-	}
-
-	public void setMember(boolean member) {
-		this.member = member;
+		this.customerID = customerId;
 	}
 
 	public int getNumberPreviousCoffees() {
@@ -33,6 +46,22 @@ public class Customer {
 
 	public void setNumberPreviousCoffees(int numberPreviousCoffees) {
 		this.numberPreviousCoffees = numberPreviousCoffees;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public MembershipType getType() {
+		return member;
+	}
+
+	public void setType(MembershipType member) {
+		this.member = member;
 	}
 	
 	

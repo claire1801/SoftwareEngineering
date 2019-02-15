@@ -48,8 +48,20 @@ public class OrderList {
 		}
 	}
 	
+	public int totalSales() {
+		return orderList.size();
+	}
+	public double totalIncome() {
+		double total = 0;
+		for(Order order : orderList) {
+			total += order.getCost();
+		}
+		
+		return total;
+	}
+	
 	public String writeReport() {
-		String report = new String();
+
 		try {
 			for(Order order : orderList) {
 				report += order.getOrderID();
@@ -66,6 +78,7 @@ public class OrderList {
 				report += "\n";
 				System.out.println(report);
 			}
+
 		}
 		catch(IndexOutOfBoundsException e){
 				System.out.println(e.getMessage());

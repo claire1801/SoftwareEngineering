@@ -1,6 +1,9 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.Date;
@@ -35,10 +38,16 @@ public class Manager {
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
+		int counter = 0;
 		
 		while (scanner.hasNextLine()) {
+			
 			String line = scanner.nextLine();
 			String[] item = line.split("/");
+			if(item.length < 5) {
+				continue;
+			}
+			
 			double cost = Double.parseDouble(item[2]);
 			//System.out.println(item[0]);
 			//String code = item[1].
@@ -59,6 +68,8 @@ public class Manager {
 				//System.out.println("snack");
 				treeMenu.put(item[1], newMenuItem);
 			}
+			counter += 1;
+			//System.out.println(counter);
 			
 		//	menuList.addItem(newMenuItem);
 		}
@@ -81,6 +92,9 @@ public class Manager {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] order = line.split("/");
+			if(order.length < 5) {
+				continue;
+			}
 			double cost = Double.parseDouble(order[4]);
 			double discount = Double.parseDouble(order[5]);
 			int customerID = Integer.parseInt(order[1]);
@@ -121,10 +135,6 @@ public class Manager {
 			//System.out.println(names[lastIndex]);
 			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
 			staffList.addStaffToList(staffmember);
-			
-			
-			
-			
 		}
 		scanner.close();
 		
@@ -146,12 +156,27 @@ public class Manager {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] customer = line.split("/");
+			if(customer.length < 2) {
+				continue;
+			}
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
-			boolean member = Boolean.parseBoolean(customer[3]);
+			String member = customer[3];
+			MembershipType memType;
+			if(member.charAt(0) == 'E') {
+				memType = MembershipType.EMPLOYEE;
+			}else if(member.charAt(0) == 'S') {
+				memType = MembershipType.STUDENT;
+			}else  {
+				memType = MembershipType.MEMBER;
+			}
+			
+			 
+			
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
-			Customer newCustomer = new Customer(ID,member,noDrinks);
+			Customer newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
+			//System.out.println(newCustomer.isMember());
 			customersList.put(ID,newCustomer);//name?
 
 		}
@@ -169,6 +194,7 @@ public class Manager {
 			readMenuItems("MenuItems.txt");
 			readOrders("orderList.txt");
 		} catch (NumberFormatException e) {
+			
 			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			e.printStackTrace();
@@ -177,17 +203,80 @@ public class Manager {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+		progExit();
 		gui.initGUI();
 
 	}
+	/**
+	 * runs shutdown procedure
+	 */
 	
-	public void writeReport() {
-		//menuList.writeReport("MenuItems.txt");
-		//orderList.writeReport("orderList.txt");
-		//staffList.writeReport("StaffList.txt");
-		//customerList.writeReport("customerList.txt");
+	public static void progExit() {
+		updateFiles();
+		writeReport("report.txt");
+		System.exit(0);
 		
 	}
+	
+	
+	/**
+	 * update all data files
+	 */
+	
+	public static void updateFiles() {
+		String order = orderList.writeReport();
+		printToFile("orderList.txt",order);
+		
+		String menu = menuList.writeReport();
+		printToFile("MenuItems.txt",menu);
+//		
+//		String menu = staffList.writeReport();    // not needed?
+//		printToFile("StaffList.txt",menu);
+//		
+		String customer = customerList.writeReport();
+		printToFile("customerList.txt",customer);
+
+		
+	}
+	
+	/**
+	 * Write report
+	 * @param filename
+	 * @param details
+	 */
+	
+	public static void printToFile(String filename, String details)  {
+		try {
+			FileWriter fw = new FileWriter(filename);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.print(details);
+			pw.close();
+		} catch (FileNotFoundException e1) {
+			System.out.println("input file does not exist!");
+			System.exit(1);
+		}catch (IOException e2) {
+			e2.printStackTrace();
+			System.exit(1);
+		}
+		
+	}
+	
+	
+	public static  void writeReport(String filename) {
+		String details = "Summary of Cafe\n";
+		int sales = orderList.totalSales();
+		double income = orderList.totalIncome();
+		details += "In total there have been " + sales + "orders made.\n";
+		details += "This gives a total income of " + income + " (£)\n\n";
+		details += "The following is a full list of all items in the menu:\n";
+		details += menuList.writeReport();
+		
+		printToFile(filename, details);
+		
+		
+		
+	}
+	
+	
 
 }

@@ -26,14 +26,13 @@ public class Basket {
 	private static final double MEAL_DEAL_DISCOUNT = 1.5;
 	
 
-	public Basket() {
-		unconfirmedOrder = new ArrayList<Order> ();		
+	public Basket() {unconfirmedOrder = new ArrayList<Order> ();
 	}
 		
 	
 	/**
-	 * 
-	 * @param item 
+	 * add menu item to the basket
+	 * @param item
 	 */
 	public void addItemToUnconfirmedOrder(Order item) {   // setUnconfirmedOrder in class diagram
 		unconfirmedOrder.add(item);
@@ -42,26 +41,21 @@ public class Basket {
 	
 	
 	/**
-	 * 
+	 * clear the contents of the basket once the order has been confirmed / cancelled
 	 */
 	public void clearBasket() {
 		unconfirmedOrder.clear();
 	}
-	
-	
-	/**
-	 * 
-	 */
-	public void createOrder() {
 
-	}
-	
 	
 	/**
-	 * 
+	 * first check if there are qualifying meal deals in the basket (and determines any discount)
+	 * secondly, checks the customer coffee loyalty scheme (and determines any discount)
+	 * thirdly, determines 'member' discounts
+	 *
 	 * @return discount, total value of discount to be applied
 	 */
-	public double getDiscount() { //could possibly be broken down into smaller chunks at later stage
+	public double getDiscount() { //could possibly be broken down into smaller chunks/different methods/ discount class at later stage
 		
 		int countOfFoodItems = 0, countOfSoftDrinks = 0, countOfSnacks = 0; // counters for the meal deal discount
 		
@@ -111,17 +105,16 @@ public class Basket {
 		int numberOfFullMealDeals = Math.min(countOfFoodItems, Math.min(countOfSoftDrinks, countOfSnacks));
 		mealDealDiscount = unDiscountedCostForMealDealItems - (numberOfFullMealDeals*MEAL_DEAL_DISCOUNT);
 		
-		// members 10% discount
-		if(customer.isMember()) {
-			double tempDiscountedBill = unDiscountedBill - mealDealDiscount - coffeeLoyaltyDiscount;
-			memberDiscount = 0.1 * tempDiscountedBill;
-		}
+		// members discount
+		double tempDiscountedBill = unDiscountedBill - mealDealDiscount - coffeeLoyaltyDiscount;
+		memberDiscount = customer.getMembershipType().getDiscount() * tempDiscountedBill;
+
 		
 		// total discount
 		totalDiscount = mealDealDiscount + coffeeLoyaltyDiscount + memberDiscount;
 		
 		return totalDiscount;
 	}
-	
+
 	
 }

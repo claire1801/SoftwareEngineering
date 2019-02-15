@@ -1,5 +1,3 @@
-//package cafe;
-
 public abstract class MenuItems {
 	
 	protected String uniqueID;
@@ -9,22 +7,22 @@ public abstract class MenuItems {
 	protected String name;
 	
 	public MenuItems(String name, String id, double cost, String desc, String algns) {
-		
+		try {
 		this.name = name;
 		uniqueID = id;
 		this.cost = cost;
 		description = desc;
-		allergens = algns;
-		
+		allergens = algns; 
 	}
+	catch (IllegalArgumentException e) {
+		System.out.println(e.getMessage());
+	}
+	catch (NullPointerException e)
+	{
+		System.out.println(e.getMessage());
+	}
+}
 	
-
-	
-
-
-
-
-
 
 	public String getName() { return name; }
 	
