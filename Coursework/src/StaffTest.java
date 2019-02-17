@@ -15,17 +15,17 @@ class StaffTest {
 	}
 
 	@Test
-	void testGetStaffID() {
+	public void testGetStaffID() {
 		assertEquals(staffID, s.getStaffID());
 	}
 
 	@Test
-	void testGetStaffFirstName() {
+	public void testGetStaffFirstName() {
 		assertEquals(firstName, s.getStaffFirstName());
 	}
 
 	@Test
-	void testGetStaffLastName() {
+	public void testGetStaffLastName() {
 		assertEquals(lastName, s.getStaffLastName());
 	}
 
