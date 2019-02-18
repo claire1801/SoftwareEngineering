@@ -1,5 +1,9 @@
 package main;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * This is the basket class - not case!
@@ -25,6 +29,7 @@ public class Basket {
 	private double unDiscountedBill = 0;
 	private double totalDiscount = 0;
 	private static final double MEAL_DEAL_DISCOUNT = 1.5;
+	//public CustomerList customerList;
 	
 
 	public Basket() {unconfirmedOrder = new ArrayList<Order> ();
@@ -125,6 +130,36 @@ public class Basket {
 		}
 		this.clearBasket();
 	}
+	
+//	public static void main(String[] args) {
+//		Timestamp t = new Timestamp(System.currentTimeMillis());
+//		Customer newCustomer = new Customer(1,MembershipType.MEMBER,4,"fraser");
+//    	Hashtable<Integer, Customer> list = new Hashtable<>();
+//    	list.put(1, newCustomer);
+//    	Basket b = new Basket();
+//        b.customerList = new CustomerList(list);
+//		TreeMap<String, MenuItems> menu_input = new TreeMap<>();
+//		Drinks drink = new Drinks("nameDrink","COFEE001",1.0,"descriptionDrink","alergensDrink");
+//		Drinks drink2 = new Drinks("nameDrink","DRINK001",1.0,"descriptionDrink","alergensDrink");
+//		Snacks snack = new Snacks("nameSnack","SNACK001",2.0,"descriptionSnack","alergensSnack");
+//		Meals meal = new Meals("nameMeal","MEALS001",3.0,"descriptionMeal","alergensMeal");
+//		menu_input.put(drink.getID(), drink);
+//		menu_input.put(drink2.getID(), drink2);
+//		menu_input.put(snack.getID(), snack);
+//		menu_input.put(meal.getID(), meal);
+//		MenuList menuList = new MenuList(menu_input);
+//		Order Oa = new Order("1",1,t,"DRINK001",5.0,0.0);
+//		Order Ob = new Order("2",2,t,"SNACK001",5.0,0.0);
+//		Order Oc = new Order("3",3,t,"COFEE001",5.0,0.0);
+//		Order Od = new Order("4",4,t,"MEALS001",5.0,0.0);
+//		b.addItemToUnconfirmedOrder(Oa);
+//		b.addItemToUnconfirmedOrder(Ob);
+//		b.addItemToUnconfirmedOrder(Oc);
+//		b.addItemToUnconfirmedOrder(Od);
+//		System.out.println(b.unconfirmedOrder.get(0).getCustomerID());
+//		double theReturn = b.getDiscount();
+//		System.out.println(theReturn);
+//	}
 
 	
 }
