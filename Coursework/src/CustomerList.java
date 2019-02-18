@@ -1,3 +1,4 @@
+//package main;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -30,11 +31,14 @@ public class CustomerList {
 	}
 	
 	public void removeCustomer(Integer key) {
-		customerList.remove(key);
-		if(!customerList.containsKey(key)) {
+		
+		if (customerList.containsKey(key)) {
+			customerList.remove(key);
+		}
+		else  {
 			throw new IllegalArgumentException ("Customer ID doesn't exist");
 		}
-	}
+	}  
 	
 	
 	
@@ -61,6 +65,8 @@ public class CustomerList {
 		return report;
 				
 	}
+	
+
 
 }
 
