@@ -28,5 +28,23 @@ class StaffTest {
 	public void testGetStaffLastName() {
 		assertEquals(lastName, s.getStaffLastName());
 	}
-
+	
+	@Test
+	public void testSetStaffID() {
+	s.setStaffID(321);
+	assertEquals(321,s.getStaffID());	
+	}
+	
+	@Test
+	public void testSetStaffFirstName() {
+	s.setStaffFirstName("Mary");
+	assertEquals("Mary",s.getStaffFirstName());	
+	}
+	
+	@Test
+	public void testSetStaffLastName() {
+	s.setStaffLastName("McDonald");
+	assertEquals("McDonald",s.getStaffLastName());	
+	}
+	
 }
