@@ -16,6 +16,10 @@ public class StaffList {
 		staffList = new Hashtable<Integer, Staff> ();		
 	}
 	
+	public Hashtable<Integer, Staff> getStaffList() {
+		return staffList;
+	}
+	
 	public void addStaffToList(Staff staff) {
 		staffList.put(staff.getStaffID(), staff);
 	}
