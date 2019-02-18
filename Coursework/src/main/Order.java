@@ -1,4 +1,4 @@
-package main;
+package main
 /**
  * This is the Order class
  * 
@@ -46,9 +46,9 @@ public class Order{
 		return orderID;	
 	}
 	
-	public void setOrderID(String newOrderID)	
+	public void setOrderID(String orderID)	
 	{
-		 newOrderID = orderID;
+		 this.orderID = orderID;
 	}
 	
 	public int getCustomerID() 
@@ -56,9 +56,9 @@ public class Order{
 		return customerID;
 	}
 	
-	public void setCustomerID(int newCustomerID)	
+	public void setCustomerID(int customerID)	
 	{
-		newCustomerID = customerID;
+		this.customerID = customerID;
 	}
 	
 	public Timestamp getTimeStamp() 
@@ -66,9 +66,9 @@ public class Order{
 		return timestamp;
 	}
 	
-	public void setTimeStamp(Timestamp newTimeStamp) 
+	public void setTimeStamp(Timestamp timestamp) 
 	{
-		newTimeStamp = timestamp;
+		this.timestamp = timestamp;
 	}
 	
 	public String getItemID() 
@@ -76,9 +76,9 @@ public class Order{
 		return itemID;
 	}
 	
-	public void setItemID(String newItemID) 
+	public void setItemID(String itemID) 
 	{
-		newItemID = itemID;
+		this.itemID = itemID;
 	}
 	
 	public double getCost() 
@@ -86,9 +86,9 @@ public class Order{
 		return cost;
 	}	
 	
-	public void setCost(double newCost)	
+	public void setCost(double cost)	
 	{
-		newCost = cost;
+		this.cost = cost;
 	}
 	
 	public double getDiscountAmount() 
@@ -96,9 +96,9 @@ public class Order{
 		return discountAmount;
 	}
 	
-	public void setDiscount(double newDiscountAmount)
+	public void setDiscount(double discountAmount)
 	{
-		newDiscountAmount = discountAmount;
+		this.discountAmount = discountAmount;
 	}
 	
 }	
