@@ -1,3 +1,4 @@
+package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -210,6 +211,8 @@ public class Manager {
 //		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 //		
 //		Order testorder1 = new Order("0002",0001,timestamp,"COFEE001",20.1,1.1);
+		
+		
 		
 		gui.initGUI();
 		progExit();

@@ -1,3 +1,4 @@
+package main;
 
 public enum MembershipType {
 	STUDENT(0.1), MEMBER(0.15), EMPLOYEE(0.25);

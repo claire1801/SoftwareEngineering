@@ -1,3 +1,4 @@
+package main;
 public abstract class MenuItems {
 	
 	protected String uniqueID;

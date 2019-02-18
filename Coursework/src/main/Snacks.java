@@ -1,3 +1,4 @@
+package main;
 //package cafe;
 
 public class Snacks extends MenuItems {

@@ -1,3 +1,4 @@
+package main;
 
 /**
  * This is the staff class
