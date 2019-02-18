@@ -115,6 +115,15 @@ public class Basket {
 		
 		return totalDiscount;
 	}
+	
+	public void confirmedAndPaid() {
+		int numberOfItems = unconfirmedOrder.size();
+		for (Order item: unconfirmedOrder) {
+			item.setDiscount(totalDiscount/numberOfItems);
+			Manager.orderList.addOrder(item);  // need to work out individual cost of each item discount (i.e. factoring)
+		}
+		this.clearBasket();
+	}
 
 	
 }

@@ -11,6 +11,7 @@ import java.util.Hashtable;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Manager {
 	
@@ -20,6 +21,7 @@ public class Manager {
 	public static MenuList menuList;
 	public static StaffList staffList = new StaffList();
 	public static CustomerList customerList;
+	public static Basket basket = new Basket();
 	
 	
 	public static GUI gui = new  GUI();
@@ -203,8 +205,14 @@ public class Manager {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		progExit();
+//		//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+//		Date date= new Date();
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//		
+//		Order testorder1 = new Order("0002",0001,timestamp,"COFEE001",20.1,1.1);
+		
 		gui.initGUI();
+		progExit();
 
 	}
 	/**
