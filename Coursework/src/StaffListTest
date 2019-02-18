@@ -9,23 +9,25 @@ import org.junit.jupiter.api.Test;
 class StaffListTest {
 	
 	Staff staff = new Staff(123, "John", "Smith");
-	Hashtable<Integer, Staff> staffList;
+	StaffList staffList;
 	
 	@BeforeEach
 	public void setup() {
-		staffList = new Hashtable<Integer, Staff>();
-		staffList.put(staff.getStaffID(), staff);
+		staffList = new StaffList();
+		staffList.addStaffToList(staff);
+		
 	}
 	
 	@Test
 	void testAddStaffToList() {
-		 assertTrue(staffList.containsKey(123));
+		 assertTrue(staffList.getStaffList().containsKey(123));
+		  
 	}
 
 	@Test
 	void testRemoveStaffFromList() {
-		staffList.remove(123);
-		assertFalse(staffList.containsKey(123));
+		staffList.getStaffList().remove(123);
+		assertFalse(staffList.getStaffList().containsKey(123));
 	}
 
 }
