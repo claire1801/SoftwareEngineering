@@ -246,8 +246,7 @@ public class Basket {
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		for (MenuItems item: unconfirmedOrder) {
 			int lastOrderID = Manager.orderList.totalSales(); //total sales returns relative size
-			// required here for index if (int < 10) also (int <100) etc.
-			String id = "000" + Integer.toString(lastOrderID);
+			int id = lastOrderID ++;
 			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems);
 			// note at some point we should probably include staff id in with orders too
 			Manager.orderList.addOrder(newOrder);  
