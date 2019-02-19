@@ -1,4 +1,4 @@
-package main
+package main;
 /**
  * This is the Order class
  * 
@@ -13,7 +13,7 @@ import java.util.Hashtable;
 
 public class Order{
 	
-	private String orderID;
+	private int orderID;
 	private int customerID;
 	private Timestamp timestamp;
 	private String itemID;
@@ -21,7 +21,7 @@ public class Order{
 	private double discountAmount;
 
 	
-	public Order(String orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)
+	public Order(int orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount)
 	{
 		try {
 		this.orderID = orderID;
@@ -41,12 +41,12 @@ public class Order{
 		}
 	}
 	
-	public String getOrderID()
+	public int getOrderID()
 	{ 
 		return orderID;	
 	}
 	
-	public void setOrderID(String orderID)	
+	public void setOrderID(int orderID)	
 	{
 		 this.orderID = orderID;
 	}
