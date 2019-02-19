@@ -68,7 +68,7 @@ public class Gui2 extends JFrame implements ActionListener{
         //results area
         details= new JTextArea(3,3);     
         details.setEditable(false);
-        details.setText("cost: " + cost + "\n discount : " + discount);
+        details.setText(String.format("cost: £%,.2f\n discount : £%,.2f\n", cost, discount));
         //combine all panels
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new GridLayout(2,2));

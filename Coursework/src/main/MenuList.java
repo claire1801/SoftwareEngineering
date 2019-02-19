@@ -6,9 +6,8 @@ public class MenuList {
 	
 	private static TreeMap<String, MenuItems> menuList; 
 
-	public MenuList(TreeMap<String, MenuItems> menuList) { 
-		// I don't think the constructor should take an argument
-		this.menuList = menuList; // this is also looks strange
+	public MenuList() { 
+		menuList = new TreeMap<String, MenuItems> ();
 	}
 
 	public TreeMap<String, MenuItems> getMenuList() { // I don't really understand the point of this method

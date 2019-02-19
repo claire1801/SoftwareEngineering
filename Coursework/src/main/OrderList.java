@@ -11,7 +11,11 @@ import java.util.ArrayList;
 public class OrderList {
 	
 	
-	private ArrayList<Order> orderList = new ArrayList<Order>();
+	private ArrayList<Order> orderList;
+	
+	public OrderList() {
+		orderList = new ArrayList<Order>();
+	}
 	
 	public ArrayList<Order> getOrderList() {
 		String message= "";
