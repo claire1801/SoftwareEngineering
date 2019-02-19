@@ -34,9 +34,10 @@ public class Basket {
 	private double unDiscountedBill = 0;
 	private double discount = 0;
 	private double finalBill = 0;
-	private int staffID; // should this be added to the constructor, i.e. will we know staff/customer before basket screen
+	private int currentStaffID; // should this be added to the constructor, i.e. will we know staff/customer before basket screen
 	private int currentCustomerID; // will we need more than one basket ever? probably not
 	private static final double MEAL_DEAL_DISCOUNT = 1.5;
+	
 
 
 
@@ -59,6 +60,11 @@ public class Basket {
 	 */
 	public void clearBasket() {
 		unconfirmedOrder.clear();
+		this.currentCustomerID = 0;
+		this.currentStaffID = 0;
+		this.unDiscountedBill = 0;
+		this.discount = 0;
+		this.finalBill = 0;		
 	}
 
 	/**
@@ -67,6 +73,14 @@ public class Basket {
 	 */
 	public void setCurrentCustomerID(int id) {
 		this.currentCustomerID = id;
+	}
+	
+	/**
+	 * sets the baskets current customer ID
+	 * @param id
+	 */
+	public void setCurrentStaffID(int id) {
+		this.currentStaffID = id;
 	}
 	
 //	/**
@@ -144,7 +158,7 @@ public class Basket {
  	 * 
  	 * Discounts for meals deals, only full meal deals (i.e. meal drink and snack) count
  	 */
-	public void getMealDealDiscount() {
+	private void getMealDealDiscount() {
 		int countOfFoodItems = 0, countOfSoftDrinks = 0, countOfSnacks = 0; // counters for the meal deal discount
 
 		for (MenuItems item : unconfirmedOrder) {
@@ -168,7 +182,7 @@ public class Basket {
 	 * 
 	 * Coffee is taken off the bill if it is the customers 5th coffee
 	 */
-	public void getCoffeeDiscount() {
+	private void getCoffeeDiscount() {
 		double coffeeLoyaltyDiscount = 0;
 		Customer customer = Manager.customerList.getCustomer(currentCustomerID);
 		int previousCoffees = customer.getNumberPreviousCoffees();
@@ -192,7 +206,7 @@ public class Basket {
 	 * 
 	 *gets value of discount returned after member type reduction
 	 */
-	public void getMemberDiscount() {
+	private void getMemberDiscount() {
 		double tempDiscountedBill = unDiscountedBill - discount;
 		Customer customer = Manager.customerList.getCustomer(currentCustomerID);	
 		double memberDiscount = customer.getType().getDiscount() * tempDiscountedBill;
@@ -239,41 +253,8 @@ public class Basket {
 			Manager.orderList.addOrder(newOrder);  
 		}
 		this.clearBasket();
-		this.currentCustomerID = 0;
-		this.discount = 0;
-		this.finalBill = 0;
-		this.unDiscountedBill = 0;
 	}
 	
-//	public static void main(String[] args) {
-//		Timestamp t = new Timestamp(System.currentTimeMillis());
-//		Customer newCustomer = new Customer(1,MembershipType.MEMBER,4,"fraser");
-//    	Hashtable<Integer, Customer> list = new Hashtable<>();
-//    	list.put(1, newCustomer);
-//    	Basket b = new Basket();
-//        b.customerList = new CustomerList(list);
-//		TreeMap<String, MenuItems> menu_input = new TreeMap<>();
-//		Drinks drink = new Drinks("nameDrink","COFEE001",1.0,"descriptionDrink","alergensDrink");
-//		Drinks drink2 = new Drinks("nameDrink","DRINK001",1.0,"descriptionDrink","alergensDrink");
-//		Snacks snack = new Snacks("nameSnack","SNACK001",2.0,"descriptionSnack","alergensSnack");
-//		Meals meal = new Meals("nameMeal","MEALS001",3.0,"descriptionMeal","alergensMeal");
-//		menu_input.put(drink.getID(), drink);
-//		menu_input.put(drink2.getID(), drink2);
-//		menu_input.put(snack.getID(), snack);
-//		menu_input.put(meal.getID(), meal);
-//		MenuList menuList = new MenuList(menu_input);
-//		Order Oa = new Order("1",1,t,"DRINK001",5.0,0.0);
-//		Order Ob = new Order("2",2,t,"SNACK001",5.0,0.0);
-//		Order Oc = new Order("3",3,t,"COFEE001",5.0,0.0);
-//		Order Od = new Order("4",4,t,"MEALS001",5.0,0.0);
-//		b.addItemToUnconfirmedOrder(Oa);
-//		b.addItemToUnconfirmedOrder(Ob);
-//		b.addItemToUnconfirmedOrder(Oc);
-//		b.addItemToUnconfirmedOrder(Od);
-//		System.out.println(b.unconfirmedOrder.get(0).getCustomerID());
-//		double theReturn = b.getDiscount();
-//		System.out.println(theReturn);
-//	}
 
 	
 }
