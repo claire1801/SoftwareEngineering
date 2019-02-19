@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 public class MenuList {
 	
-	private static TreeMap<String, MenuItems> menuList; 
+	static TreeMap<String, MenuItems> menuList; 
 
 	public MenuList(TreeMap<String, MenuItems> menuList) { 
 		// I don't think the constructor should take an argument
