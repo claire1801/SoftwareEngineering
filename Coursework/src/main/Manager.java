@@ -20,7 +20,7 @@ public class Manager {
 	
 	public static OrderList orderList = new OrderList();
 	public static MenuList menuList;
-	public static StaffList staffList = new StaffList();
+	//public static StaffList staffList = new StaffList();
 	public static CustomerList customerList;
 	public static Basket basket = new Basket();
 	
@@ -125,6 +125,9 @@ public class Manager {
 	private static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
+		
+		// using Singleton
+		StaffList staffList = StaffList.getInstance();
 		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();

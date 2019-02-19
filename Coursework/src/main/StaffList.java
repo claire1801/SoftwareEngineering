@@ -12,12 +12,16 @@ public class StaffList {
 
 	private Hashtable<Integer, Staff> staffList;
 	
-	public StaffList() {
+	// for Singleton
+	private static StaffList list = new StaffList();
+	
+	private StaffList() {
 		staffList = new Hashtable<Integer, Staff> ();		
 	}
 	
-	public Hashtable<Integer, Staff> getStaffList() {
-		return staffList;
+	// for Singleton
+	public static StaffList getInstance() {
+		return list;
 	}
 	
 	public void addStaffToList(Staff staff) {
@@ -29,6 +33,7 @@ public class StaffList {
 	public void removeStaffFromList(Staff staff) {
 		staffList.remove(staff.getStaffID());
 	}
+	
 //	public void removeStaffFromList(int id) {
 //		staffList.remove(id);
 //	}
