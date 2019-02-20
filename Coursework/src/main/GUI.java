@@ -51,7 +51,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton addID;
     private JTextField enteredID;
     private TreeMap<String, MenuItems> menulist = new TreeMap<>();
-    ArrayList<String> basket = new ArrayList<String>();
+    ArrayList<String> GUIbasket = new ArrayList<String>();
     String[] ID ;
     int nextOrderID = 10;
     public GUI() {
@@ -75,10 +75,10 @@ public class GUI extends JFrame implements ActionListener {
         scrollPane = new JScrollPane();
         list = new JList(data);
         scrollPane.setViewportView(list);
-        button = new JButton("Add");
+        button = new JButton("Add to Basket");
         addID = new JButton("Add Customer ID");
         finish = new JButton("Checkout");
-        exit = new JButton("Exit");
+        exit = new JButton("Exit and Write Report");
         
         enteredID = new JTextField(5);
         enteredID.setText("Enter Customer ID (001-999)");
@@ -107,15 +107,16 @@ public class GUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Add")) {
+        if (e.getActionCommand().equals("Add to Basket")) {
             int index = list.getSelectedIndex();
             String uniquID = ID[index];
             Manager.basket.addItemToUnconfirmedOrder(Manager.menuList.getItem(uniquID));
             
-            basket.add(uniquID);
-            System.out.println(basket);
+            GUIbasket.add(uniquID);
+            System.out.println(GUIbasket);
+            details.setText(String.valueOf(GUIbasket));
         }
-        if (e.getActionCommand().equals("Exit")) {
+        if (e.getActionCommand().equals("Exit and Write Report")) {
             Manager.progExit();
         }
         if (e.getActionCommand().equals("Checkout")) {
@@ -124,7 +125,7 @@ public class GUI extends JFrame implements ActionListener {
         		details.setText("please enter customer ID");
         	}else  {
         	
-        
+        		GUIbasket.clear();
         		Gui2 checkout = new Gui2();
         		checkout.setUpGUI(); 
         	}
@@ -147,7 +148,7 @@ public class GUI extends JFrame implements ActionListener {
 				
 				
 			}catch(NumberFormatException e1) {
-				details.setText("\"" + IDnumber + "\" is not a correct format for ID (001-999)");
+				details.setText("\"" + IDnumber + "\" is not a correct format for ID (001)");
 			}
         }
     }

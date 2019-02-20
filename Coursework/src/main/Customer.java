@@ -10,8 +10,8 @@ public class Customer {
 	
 	
 	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
-		if(customerID < 1 || customerID > 1000) {
-			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 1000");
+		if(customerID < 1 || customerID > 2000000) {
+			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 2000000");
 		}
 		
 //		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {

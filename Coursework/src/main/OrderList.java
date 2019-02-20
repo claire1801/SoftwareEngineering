@@ -76,9 +76,9 @@ public class OrderList {
 			report += "/";
 			report += order.getItemID();
 			report += "/";
-			report += order.getCost();
+			report += String.format("%,.2f",order.getCost());
 			report += "/";
-			report += order.getDiscountAmount();
+			report += String.format("%,.2f", order.getDiscountAmount());
 			report += "\n";
 		}
 
