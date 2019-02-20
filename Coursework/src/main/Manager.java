@@ -38,7 +38,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	private static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 	
 		
@@ -91,7 +91,7 @@ public class Manager {
 	 * @throws ParseException
 	 * @throws InvalidCustomerIDException
 	 */
-	public static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
+	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -126,7 +126,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	public static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	private static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -155,7 +155,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	public static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 		
 		File file = new File(fileName);
