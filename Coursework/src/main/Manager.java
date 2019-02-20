@@ -38,7 +38,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	private static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 	
 		
@@ -91,7 +91,7 @@ public class Manager {
 	 * @throws ParseException
 	 * @throws InvalidCustomerIDException
 	 */
-	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
+	public static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -126,7 +126,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	private static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	public static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -155,7 +155,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	public static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 		
 		File file = new File(fileName);
@@ -305,10 +305,10 @@ public class Manager {
 		String details = "Summary of Cafe\n";
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
-		details += "In total there have been " + sales + "orders made.\n";
+		details += "In total there have been " + sales + " orders made.\n";
 		details += "This gives a total income of " + income + " (£)\n\n";
-		details += "The following is a full list of all items in the menu:\n";
-		details += menuList.writeReport();
+		details += "The following is a full list of all items Ordered:\n";
+		details += orderList.writeReport();
 		
 		printToFile(filename, details);
 		
