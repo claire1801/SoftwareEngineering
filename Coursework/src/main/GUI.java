@@ -44,6 +44,7 @@ public class GUI extends JFrame implements ActionListener {
 	private JTextArea details;
 	private JPanel southPanel = new JPanel();
 	private JScrollPane scrollPane;
+	private JScrollPane scrollPane2;
     private JList list;
     private JButton button;
     private JButton AddCustomer;
@@ -76,6 +77,7 @@ public class GUI extends JFrame implements ActionListener {
       //  Object[] data = { "Value 1", "Value 2", "Value 3", "Value 4", "Value 5" };
         //setUpPanel();
         scrollPane = new JScrollPane();
+        scrollPane2 = new JScrollPane();
         list = new JList(data);
         scrollPane.setViewportView(list);
         button = new JButton("Add to Basket");
@@ -85,11 +87,11 @@ public class GUI extends JFrame implements ActionListener {
         exit = new JButton("Exit and Write Report");
         
         enteredID = new JTextField(5);
-        enteredID.setText("Enter Customer ID (001-999)");
+        enteredID.setText("Enter Customer ID (Integer)");
         
         details= new JTextArea(3,3);     
         details.setEditable(false);
-        
+        scrollPane2.setViewportView(details);
         addID.addActionListener(this);
         button.addActionListener(this);
         finish.addActionListener(this);
@@ -104,7 +106,7 @@ public class GUI extends JFrame implements ActionListener {
         southPanel.add(button);
         southPanel.add(finish);
         southPanel.add(exit);
-        southPanel.add(details);
+        southPanel.add(scrollPane2);
         southPanel.add(AddCustomer);
         
         add(southPanel);
@@ -121,7 +123,11 @@ public class GUI extends JFrame implements ActionListener {
             
             GUIbasket.add(uniquID);
             System.out.println(GUIbasket);
-            details.setText(String.valueOf(GUIbasket));
+            String output = "";
+            for(String x : GUIbasket) {
+            	output += String.format("%s\n", x);
+            }
+            details.setText(output);
         }
         if (e.getActionCommand().equals("Exit and Write Report")) {
             Manager.progExit();

@@ -105,21 +105,59 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     		String IDnumber = ID.getText().trim();
     		String Customername = name.getText().trim();
     		String CustomerMember = member.getText().trim();
-    		int ID = Integer.parseInt(IDnumber);
+    		int ID = 0;
+    		try {
+    		ID = Integer.parseInt(IDnumber);
+    		}catch(NumberFormatException e2) {
+    			details.setText("ID must be an integer");
+    		}
+    		
     		if(Manager.customerList.customerExists(ID) == false) {
     			MembershipType memType;
+    			Customer newCustomer;
 
     			if(CustomerMember.charAt(0) == 'M'||CustomerMember.charAt(0) == 'm') {
     				memType = MembershipType.MEMBER;
+    				try {
+    					newCustomer= new Customer(ID,memType,0,Customername);
+    					Manager.customerList.addCustomer(ID, newCustomer);
+    					setVisible(false);
+    				}catch(IllegalStateException e3) {
+    					details.setText("ID must be an integer");
+    				}
+    				
+    				//setVisible(false);
     			}else if(CustomerMember.charAt(0) == 'S'||CustomerMember.charAt(0) == 's') {
     				memType = MembershipType.STUDENT;
-    			}else  {
+    				try {
+    					newCustomer= new Customer(ID,memType,0,Customername);
+    					Manager.customerList.addCustomer(ID, newCustomer);
+    					setVisible(false);
+    				}catch(IllegalStateException e3) {
+    					details.setText("ID must be an integer");
+    				}
+//    				 Manager.customerList.addCustomer(ID, newCustomer);
+//    				 setVisible(false);
+    			}else if(CustomerMember.charAt(0) == 'e'||CustomerMember.charAt(0) == 'E') { 
     				memType = MembershipType.EMPLOYEE;
+    				try {
+    					newCustomer= new Customer(ID,memType,0,Customername);
+    					Manager.customerList.addCustomer(ID, newCustomer);
+    					setVisible(false);
+    				}catch(IllegalStateException e3) {
+    					details.setText("ID must be an integer");
+    				}
+    				
+    				
+    				//Manager.customerList.addCustomer(ID, newCustomer);
+    				//setVisible(false);
+    			} else {
+    				details.setText("Enter Membership type (m/e/s)");
     			}
     		
-    			Customer newCustomer= new Customer(ID,memType,0,Customername);
-    			Manager.customerList.addCustomer(ID, newCustomer);
-    			setVisible(false);
+    			
+    			
+    			
     		}else {
     			details.setText("this ID \"" + IDnumber + "\" allready exists");
     		}
