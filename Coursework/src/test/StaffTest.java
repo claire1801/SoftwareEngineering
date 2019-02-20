@@ -1,4 +1,7 @@
+package test;
 import static org.junit.jupiter.api.Assertions.*;
+import main.Staff;
+//import main.StaffList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

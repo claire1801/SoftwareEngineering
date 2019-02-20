@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 public class CustomerList {
 	Hashtable<Integer, Customer> customerList;
 
-	public CustomerList(Hashtable<Integer, Customer> customerList) {
-		this.customerList = customerList;
+	public CustomerList() {
+		customerList = new Hashtable<Integer, Customer> ();
 	}
 
 	public Hashtable<Integer, Customer> getCustomerList() {

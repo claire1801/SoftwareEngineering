@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
+
+import javax.swing.JFrame;
+
 import java.util.Date;
 import java.util.Hashtable;
 import java.sql.Timestamp;
@@ -19,13 +22,13 @@ public class Manager {
 
 	
 	public static OrderList orderList = new OrderList();
-	public static MenuList menuList;
+	public static MenuList menuList = new MenuList();
 	public static StaffList staffList = new StaffList();
-	public static CustomerList customerList;
+	public static CustomerList customerList = new CustomerList();
 	public static Basket basket = new Basket();
 	
 	
-	public static GUI gui = new  GUI();
+	//public static GUI gui;
 	
 	
 	/**
@@ -37,11 +40,11 @@ public class Manager {
 	 */
 	private static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
-		TreeMap<String, MenuItems> treeMenu = new TreeMap<>();
+	
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
-		int counter = 0;
+		//int counter = 0; not used????
 		
 		while (scanner.hasNextLine()) {
 			
@@ -59,25 +62,24 @@ public class Manager {
 				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("Drink");
 				//System.out.println(item[0]);
-				treeMenu.put(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			else if(item[1].substring(0, 5).equals("MEALS")) {
 				MenuItems newMenuItem = new Meals(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("meal");
-				treeMenu.put(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			else if(item[1].substring(0, 5).equals("SNACK")) {
 				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("snack");
-				treeMenu.put(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
-			counter += 1;
+			//counter += 1;
 			//System.out.println(counter);
 			
 		//	menuList.addItem(newMenuItem);
 		}
 		scanner.close();
-		menuList = new MenuList(treeMenu);
 	}
 	
 	/**
@@ -101,6 +103,7 @@ public class Manager {
 			double cost = Double.parseDouble(order[4]);
 			double discount = Double.parseDouble(order[5]);
 			int customerID = Integer.parseInt(order[1]);
+			int orderID = Integer.parseInt(order[0]);
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 			Date parsedDate = dateFormat.parse(order[2]);
@@ -108,7 +111,7 @@ public class Manager {
 			
 			//System.out.println(timestamp);
 			
-			Order newOrder = new Order(order[0],customerID, timestamp, order[3],cost,discount);
+			Order newOrder = new Order(orderID,customerID, timestamp, order[3],cost,discount);
 			orderList.addOrder(newOrder);
 		}
 		scanner.close();
@@ -125,6 +128,7 @@ public class Manager {
 	private static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
+		
 		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -151,7 +155,7 @@ public class Manager {
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
-		Hashtable<Integer, Customer> customersList = new Hashtable<>();
+		
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
@@ -180,11 +184,10 @@ public class Manager {
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
 			//System.out.println(newCustomer.isMember());
-			customersList.put(ID,newCustomer);//name?
+			customerList.addCustomer(ID,newCustomer);//name?
 
 		}
 		scanner.close();
-		customerList = new CustomerList(customersList);
 	}
 	
 
@@ -208,16 +211,40 @@ public class Manager {
 		}
 //		//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 //		Date date= new Date();
-//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 //		
 //		Order testorder1 = new Order("0002",0001,timestamp,"COFEE001",20.1,1.1);
 		
-		
-		
-		gui.initGUI();
-		progExit();
+		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			  
+			  public void run() {
+			   
+			      createAndShowGUI(); 
+			   
+			  }
+			   
+			    });
+		//gui = new GUI();
+		//gui.guiRun();
+		//progExit();
 
 	}
+	private static void createAndShowGUI() {
+   	 
+  	  //Create and set up the window.
+  	 
+  	  JFrame frame = new GUI();
+  	 
+  	  //Display the window.
+  	 
+  	  frame.pack();
+  	 
+  	  frame.setVisible(true);
+  	 
+  	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  	 
+  	 }
+	
 	/**
 	 * runs shutdown procedure
 	 */
@@ -278,7 +305,7 @@ public class Manager {
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + "orders made.\n";
-		details += "This gives a total income of " + income + " (£)\n\n";
+		details += "This gives a total income of " + income + " (Â£)\n\n";
 		details += "The following is a full list of all items in the menu:\n";
 		details += menuList.writeReport();
 		

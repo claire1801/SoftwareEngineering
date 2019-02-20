@@ -1,5 +1,7 @@
 
 import static org.junit.jupiter.api.Assertions.*;
+import main.Staff;
+import main.StaffList;
 
 import java.util.Hashtable;
 
