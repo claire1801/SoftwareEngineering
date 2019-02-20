@@ -38,7 +38,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	private static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 	
 		
@@ -89,9 +89,8 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 * @throws ParseException
-	 * @throws InvalidCustomerIDException 
 	 */
-	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
+	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -126,7 +125,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	private static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -155,7 +154,7 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 		
 		File file = new File(fileName);
@@ -194,7 +193,7 @@ public class Manager {
 
 	
 
-	public static void main(String[] args) throws InvalidCustomerIDException {
+	public static void main(String[] args) {
 		try {
 			readCustomers("customerList.txt");
 			readStaff("StaffList.txt");
@@ -306,7 +305,7 @@ public class Manager {
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + "orders made.\n";
-		details += "This gives a total income of " + income + " (Â£)\n\n";
+		details += "This gives a total income of " + income + " (Ã‚Â£)\n\n";
 		details += "The following is a full list of all items in the menu:\n";
 		details += menuList.writeReport();
 		
@@ -315,7 +314,6 @@ public class Manager {
 		
 		
 	}
-	
 	
 	
 

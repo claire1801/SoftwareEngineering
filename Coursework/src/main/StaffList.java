@@ -12,17 +12,12 @@ public class StaffList {
 
 	Hashtable<Integer, Staff> staffList;
 	
-	// for Singleton
-	private static StaffList list = new StaffList();
 	
-	private StaffList() {
+	public StaffList() {
 		staffList = new Hashtable<Integer, Staff> ();		
 	}
 	
-	// for Singleton
-	public static StaffList getInstance() {
-		return list;
-	}
+
 	
 	public void addStaffToList(Staff staff) {
 		staffList.put(staff.getStaffID(), staff);

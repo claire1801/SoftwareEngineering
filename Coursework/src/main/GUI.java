@@ -75,7 +75,7 @@ public class GUI extends JFrame implements ActionListener {
         scrollPane = new JScrollPane();
         list = new JList(data);
         scrollPane.setViewportView(list);
-        button = new JButton("Add");
+        button = new JButton("Add to Basket");
         addID = new JButton("Add Customer ID");
         finish = new JButton("Checkout");
         exit = new JButton("Exit");
@@ -107,13 +107,14 @@ public class GUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Add")) {
+        if (e.getActionCommand().equals("Add to Basket")) {
             int index = list.getSelectedIndex();
             String uniquID = ID[index];
             Manager.basket.addItemToUnconfirmedOrder(Manager.menuList.getItem(uniquID));
             
             basket.add(uniquID);
             System.out.println(basket);
+            details.setText(String.valueOf(basket));
         }
         if (e.getActionCommand().equals("Exit")) {
             Manager.progExit();
@@ -136,9 +137,16 @@ public class GUI extends JFrame implements ActionListener {
         	int ID = 0;
 			try{
 				ID = Integer.parseInt(IDnumber);
-				CustomerID = ID;
-				details.setText("\"" + IDnumber + "\" is set");
-				Manager.basket.setCurrentCustomerID(CustomerID);
+				if(Manager.customerList.customerExists(ID)) {
+					CustomerID = ID;
+					details.setText("\"" + IDnumber + "\" is set");
+					Manager.basket.setCurrentCustomerID(CustomerID);
+				} else {
+					details.setText("There is no customer with ID:\"" + IDnumber + "\" ");
+				}
+				
+				
+				
 			}catch(NumberFormatException e1) {
 				details.setText("\"" + IDnumber + "\" is not a correct format for ID (001-999)");
 			}

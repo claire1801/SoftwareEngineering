@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 public class CustomerList {
 	Hashtable<Integer, Customer> customerList;
 
-	public CustomerList(Hashtable<Integer, Customer> customerList) {
-		this.customerList = customerList;
+	public CustomerList() {
+		customerList = new Hashtable<Integer, Customer> ();
 	}
 
 	public Hashtable<Integer, Customer> getCustomerList() {
@@ -39,6 +39,19 @@ public class CustomerList {
 			throw new IllegalArgumentException ("Customer ID doesn't exist");
 		}
 	}  
+	/**
+	 * does customer exist
+	 * @param key - the ID 
+	 * @return true , false
+	 */
+	public boolean customerExists(int key) {
+		if(customerList.containsKey(key)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	
 	
