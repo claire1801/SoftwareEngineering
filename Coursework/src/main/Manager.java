@@ -41,8 +41,9 @@ public class Manager {
 	 * @throws FileNotFoundException
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
+	 * @throws InvalidItemIdentifierException
 	 */
-	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, InvalidItemIdentifierException {
 		
 	
 		
@@ -94,8 +95,9 @@ public class Manager {
 	 * @throws ArrayIndexOutOfBoundsException
 	 * @throws ParseException
 	 * @throws InvalidCustomerIDException
+	 * @throws InvalidItemIdentifierException
 	 */
-	public static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
+	public static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException, InvalidItemIdentifierException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
