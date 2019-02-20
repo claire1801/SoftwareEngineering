@@ -122,7 +122,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     					newCustomer= new Customer(ID,memType,0,Customername);
     					Manager.customerList.addCustomer(ID, newCustomer);
     					setVisible(false);
-    				}catch(IllegalStateException e3) {
+    				}catch(InvalidCustomerIDException e3) {
     					details.setText("ID must be an integer");
     				}
     				
@@ -133,7 +133,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     					newCustomer= new Customer(ID,memType,0,Customername);
     					Manager.customerList.addCustomer(ID, newCustomer);
     					setVisible(false);
-    				}catch(IllegalStateException e3) {
+    				}catch(InvalidCustomerIDException e3) {
     					details.setText("ID must be an integer");
     				}
 //    				 Manager.customerList.addCustomer(ID, newCustomer);
@@ -144,7 +144,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     					newCustomer= new Customer(ID,memType,0,Customername);
     					Manager.customerList.addCustomer(ID, newCustomer);
     					setVisible(false);
-    				}catch(IllegalStateException e3) {
+    				}catch(InvalidCustomerIDException e3) {
     					details.setText("ID must be an integer");
     				}
     				

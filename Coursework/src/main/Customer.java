@@ -24,8 +24,9 @@ public class Customer {
 	 * @param member
 	 * @param numberPreviousCoffees
 	 * @param name
+	 * @throws InvalidCustomerIDException 
 	 */
-	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
+	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) throws InvalidCustomerIDException {
 		
 		
 //		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
@@ -59,11 +60,12 @@ public class Customer {
 	/**
 	 * set customer ID
 	 * @param customerId
+	 * @throws InvalidCustomerIDException 
 	 */
 	
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(int customerId) throws InvalidCustomerIDException {
 		if(customerId < 1 || customerId > 2000000) {
-			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 2000000");
+			throw new InvalidCustomerIDException("Customer ID is not valid, must be between 1 and 2000000");
 		}else {
 			this.customerID = customerId;
 		}

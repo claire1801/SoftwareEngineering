@@ -122,7 +122,7 @@ public class GUI extends JFrame implements ActionListener {
             Manager.basket.addItemToUnconfirmedOrder(Manager.menuList.getItem(uniquID));
             
             GUIbasket.add(uniquID);
-            System.out.println(GUIbasket);
+            //System.out.println(GUIbasket);
             String output = "";
             for(String x : GUIbasket) {
             	output += String.format("%s\n", x);
