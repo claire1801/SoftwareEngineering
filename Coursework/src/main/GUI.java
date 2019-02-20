@@ -46,6 +46,7 @@ public class GUI extends JFrame implements ActionListener {
 	private JScrollPane scrollPane;
     private JList list;
     private JButton button;
+    private JButton AddCustomer;
     private JButton finish;
     private JButton exit;
     private JButton addID;
@@ -54,6 +55,8 @@ public class GUI extends JFrame implements ActionListener {
     ArrayList<String> GUIbasket = new ArrayList<String>();
     String[] ID ;
     int nextOrderID = 10;
+    
+    
     public GUI() {
     	 
         // set flow layout for the frame
@@ -76,6 +79,7 @@ public class GUI extends JFrame implements ActionListener {
         list = new JList(data);
         scrollPane.setViewportView(list);
         button = new JButton("Add to Basket");
+        AddCustomer = new JButton("Add New Customer");
         addID = new JButton("Add Customer ID");
         finish = new JButton("Checkout");
         exit = new JButton("Exit and Write Report");
@@ -90,6 +94,7 @@ public class GUI extends JFrame implements ActionListener {
         button.addActionListener(this);
         finish.addActionListener(this);
         exit.addActionListener(this);
+       AddCustomer.addActionListener(this);
  
         // add list to frame
         southPanel.setLayout(new GridLayout(2,2));
@@ -100,6 +105,8 @@ public class GUI extends JFrame implements ActionListener {
         southPanel.add(finish);
         southPanel.add(exit);
         southPanel.add(details);
+        southPanel.add(AddCustomer);
+        
         add(southPanel);
    
     }
@@ -132,6 +139,15 @@ public class GUI extends JFrame implements ActionListener {
 
   
         }
+        if (e.getActionCommand().equals("Add New Customer")) {
+        	
+        	
+        		AddCustomerGUI addCustomer = new AddCustomerGUI();
+        		addCustomer.setUpGUI(); 
+        	
+
+  
+        }
         if (e.getActionCommand().equals("Add Customer ID")) {
         	String IDnumber = enteredID.getText().trim();
         	int ID = 0;
@@ -153,6 +169,7 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
     
-    
+
+
 	
 }
