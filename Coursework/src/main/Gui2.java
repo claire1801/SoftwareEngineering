@@ -1,5 +1,6 @@
 package main;
 import java.awt.BorderLayout;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -12,6 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+/**
+ * Secondary gui interface for checkout.
+ * @author 
+ *
+ */
 public class Gui2 extends JFrame implements ActionListener{
 	
 	
