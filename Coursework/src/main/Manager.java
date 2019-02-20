@@ -89,8 +89,9 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 * @throws ParseException
+	 * @throws InvalidCustomerIDException
 	 */
-	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException {
+	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -193,7 +194,7 @@ public class Manager {
 
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidCustomerIDException {
 		try {
 			readCustomers("customerList.txt");
 			readStaff("StaffList.txt");
@@ -305,7 +306,7 @@ public class Manager {
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + "orders made.\n";
-		details += "This gives a total income of " + income + " (£)\n\n";
+		details += "This gives a total income of " + income + " (Â£)\n\n";
 		details += "The following is a full list of all items in the menu:\n";
 		details += menuList.writeReport();
 		
