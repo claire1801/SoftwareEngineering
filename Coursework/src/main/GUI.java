@@ -87,7 +87,7 @@ public class GUI extends JFrame implements ActionListener {
         exit = new JButton("Exit and Write Report");
         
         enteredID = new JTextField(5);
-        enteredID.setText("Enter Customer ID (001-999)");
+        enteredID.setText("Enter Customer ID (Integer)");
         
         details= new JTextArea(3,3);     
         details.setEditable(false);
