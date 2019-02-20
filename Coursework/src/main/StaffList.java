@@ -10,7 +10,7 @@ import java.util.Hashtable;
 
 public class StaffList {
 
-	private Hashtable<Integer, Staff> staffList;
+	public Hashtable<Integer, Staff> staffList;
 	
 	
 	public StaffList() {
