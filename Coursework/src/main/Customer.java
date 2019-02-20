@@ -34,8 +34,8 @@ public class Customer {
 //			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
 //		}
 		
-		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 9) {
-			throw new IllegalStateException("Number of previous coffees must be between 0 and 9");
+		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
+			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
 		}
 		
 		if(name.length() == 0) {
