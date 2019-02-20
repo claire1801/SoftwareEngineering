@@ -305,7 +305,7 @@ public class Manager {
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + "orders made.\n";
-		details += "This gives a total income of " + income + " (Â£)\n\n";
+		details += "This gives a total income of " + income + " (�)\n\n";
 		details += "The following is a full list of all items in the menu:\n";
 		details += menuList.writeReport();
 		
