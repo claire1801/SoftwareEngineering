@@ -12,7 +12,7 @@ class TestCustomerList {
 	private CustomerList b;
 
 	@BeforeEach 
-	public void setup() {
+	public void setup() throws InvalidCustomerIDException {
 		Customer newCustomer = new Customer(1,MembershipType.MEMBER,1,"sam");
     	//list.put(1, newCustomer);
         b = new CustomerList();
@@ -28,7 +28,7 @@ class TestCustomerList {
 	    }
 	    
 	    @Test
-	    public void test_get_customer() {
+	    public void test_get_customer() throws InvalidCustomerIDException {
 	        // the message (1st parameter is optional)
 	    	Customer newCustomer = new Customer(2,MembershipType.MEMBER,2,"Bob");
 	    	b.addCustomer(2, newCustomer);
@@ -36,7 +36,7 @@ class TestCustomerList {
 	        assertEquals(newCustomer, b.getCustomer(2));
 	    }
 	    @Test
-	    public void test_get_customer2() {
+	    public void test_get_customer2() throws InvalidCustomerIDException {
 	        // the message (1st parameter is optional)
 	    	Customer newCustomer = new Customer(2,MembershipType.MEMBER,2,"Bob");
 	    	b.addCustomer(2, newCustomer);
@@ -45,7 +45,7 @@ class TestCustomerList {
 	    }
 	    
 	    @Test
-	    public void test_Remove_customer() {
+	    public void test_Remove_customer() throws InvalidCustomerIDException {
 	        // the message (1st parameter is optional)
 	    	Customer newCustomer = new Customer(2,MembershipType.MEMBER,2,"Bob");
 	    	b.addCustomer(2, newCustomer);
@@ -54,7 +54,7 @@ class TestCustomerList {
 	        assertEquals(null, b.getCustomer(2));
 	    }
 	    @Test
-	    public void test_Add_null_customer() {
+	    public void test_Add_null_customer() throws InvalidCustomerIDException {
 	        // the message (1st parameter is optional)
 	    	
 	    	try {

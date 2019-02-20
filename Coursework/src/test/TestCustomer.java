@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class TestCustomer {
 	private Customer newCustomer;
 	@BeforeEach 
-	public void setup() {
+	public void setup() throws InvalidCustomerIDException {
 		 newCustomer = new Customer(1,MembershipType.MEMBER,1,"sam");
 
 	}
@@ -21,7 +21,7 @@ class TestCustomer {
     	assertEquals(1,newCustomer.getCustomerId());
     }
     @Test
-    public void test_set_id() {
+    public void test_set_id() throws InvalidCustomerIDException {
         // the message (1st parameter is optional)
     	newCustomer.setCustomerId(2);
     	assertEquals(2,newCustomer.getCustomerId());
