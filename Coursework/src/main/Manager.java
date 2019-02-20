@@ -200,7 +200,7 @@ public class Manager {
 
 	
 
-	public static void main(String[] args) throws InvalidCustomerIDException {
+	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
 		try {
 			readCustomers("customerList.txt");
 			readStaff("StaffList.txt");
