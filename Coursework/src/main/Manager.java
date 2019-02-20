@@ -43,7 +43,7 @@ public class Manager {
 	 * @throws ArrayIndexOutOfBoundsException
 	 * @throws InvalidItemIdentifierException
 	 */
-	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, InvalidItemIdentifierException {
+	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		
 	
 		
@@ -62,6 +62,7 @@ public class Manager {
 			double cost = Double.parseDouble(item[2]);
 			//System.out.println(item[0]);
 			//String code = item[1].
+			try {
 			
 			if(item[1].substring(0, 5).equals("DRINK")||item[1].substring(0, 5).equals("COFEE")) {
 				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
@@ -78,6 +79,11 @@ public class Manager {
 				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("snack");
 				menuList.addItem(item[1], newMenuItem);
+			}
+			}catch(InvalidItemIdentifierException e1) {
+				e1.printStackTrace();
+				String error = item[0] + " ID not formated correct";
+				System.out.println(error);
 			}
 			//counter += 1;
 			//System.out.println(counter);
@@ -104,7 +110,7 @@ public class Manager {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] order = line.split("/");
-			if(order.length < 5) {
+			if(order.length < 5) {//catch errors
 				continue;
 			}
 			double cost = Double.parseDouble(order[4]);
@@ -189,9 +195,15 @@ public class Manager {
 			
 			//System.out.println(customer[0]);
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
-			Customer newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
+			Customer newCustomer;
+			try {
+				newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
+				customerList.addCustomer(ID,newCustomer);//name?
+			} catch (InvalidCustomerIDException e) {
+				System.out.println("ID of customer incorect format");
+			}
 			//System.out.println(newCustomer.isMember());
-			customerList.addCustomer(ID,newCustomer);//name?
+			
 
 		}
 		scanner.close();
