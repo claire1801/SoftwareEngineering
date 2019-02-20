@@ -136,9 +136,16 @@ public class GUI extends JFrame implements ActionListener {
         	int ID = 0;
 			try{
 				ID = Integer.parseInt(IDnumber);
-				CustomerID = ID;
-				details.setText("\"" + IDnumber + "\" is set");
-				Manager.basket.setCurrentCustomerID(CustomerID);
+				if(Manager.customerList.customerExists(ID)) {
+					CustomerID = ID;
+					details.setText("\"" + IDnumber + "\" is set");
+					Manager.basket.setCurrentCustomerID(CustomerID);
+				} else {
+					details.setText("There is no customer with ID:\"" + IDnumber + "\" ");
+				}
+				
+				
+				
 			}catch(NumberFormatException e1) {
 				details.setText("\"" + IDnumber + "\" is not a correct format for ID (001-999)");
 			}

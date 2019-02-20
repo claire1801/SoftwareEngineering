@@ -39,6 +39,19 @@ public class CustomerList {
 			throw new IllegalArgumentException ("Customer ID doesn't exist");
 		}
 	}  
+	/**
+	 * does customer exist
+	 * @param key - the ID 
+	 * @return true , false
+	 */
+	public boolean customerExists(int key) {
+		if(customerList.containsKey(key)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	
 	
