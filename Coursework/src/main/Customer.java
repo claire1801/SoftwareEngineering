@@ -2,13 +2,29 @@ package main;
 
 public class Customer {
 	
-	
+
+	/**
+	 * Variables for Customer
+	 * 
+	 * customerID : unique identifier for customer
+	 * member     : each customer has a different membership type
+	 * numberPrevious coffees   : how many coffees a customer has previously ordered
+	 * name                     : customer's name
+	 * 
+	 */
 	private int customerID; 
 	private MembershipType member; 
 	private int numberPreviousCoffees;
 	private String name;
 	
-	
+	/**
+	 * Constructor for creating a customer object
+	 * 
+	 * @param customerID
+	 * @param member
+	 * @param numberPreviousCoffees
+	 * @param name
+	 */
 	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
 		if(customerID < 1 || customerID > 2000000) {
 			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 2000000");
@@ -33,6 +49,10 @@ public class Customer {
 		this.name = name;
 	}
 
+	/**
+	 * Getters and setters for each of the instance variables
+	 * 
+	 */
 	public int getCustomerId() {
 		return customerID;
 	}
@@ -63,8 +83,5 @@ public class Customer {
 
 	public void setType(MembershipType member) {
 		this.member = member;
-	}
-	
-	
-	
+	}	
 }
