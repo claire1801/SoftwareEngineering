@@ -1,16 +1,25 @@
 package main;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class MenuList {
 	
-	private static TreeMap<String, MenuItems> menuList; 
+	/**
+	 * Variable for MenuList class
+	 * menuList : List of menu items with a string as the key and a menu item object for the value
+	 */
+	public static TreeMap<String, MenuItems> menuList; 
 
-	public MenuList(TreeMap<String, MenuItems> menuList) { 
-		// I don't think the constructor should take an argument
-		this.menuList = menuList; // this is also looks strange
+	/**
+	 * Constructor for creating a tree map for menu list
+	 */
+	public MenuList() { 
+		menuList = new TreeMap<String, MenuItems> ();
 	}
-
+	
+	/**
+	 *  Getter for returning the menu list
+	 * @return menuList
+	 */
 	public TreeMap<String, MenuItems> getMenuList() { // I don't really understand the point of this method
 		String message = "";
 		try { 
@@ -22,6 +31,11 @@ public class MenuList {
 		}
 	}
 
+	/**
+	 * Add menu items to menu list 
+	 * @param key
+	 * @param value
+	 */
 	public void addItem(String key, MenuItems value) {
 		if (menuList.containsKey(key)) {
 			throw new IllegalArgumentException ("Key already exists");  
@@ -29,13 +43,21 @@ public class MenuList {
 		menuList.put(key, value);
 	}
 
+	/**
+	 * Get a menu item from the menu list
+	 * @param key
+	 * @return key
+	 */
 	public MenuItems getItem(String key) {
 		if (menuList.containsKey(key)) {
 			return menuList.get(key);
 		} throw new IllegalArgumentException ("Key does not exist"); 
 	}
 	 
-	
+	/**
+	 * Remove a menu item from the menu list
+	 * @param key
+	 */
 	public void remove(String key){
 		if (!menuList.containsKey(key)) {
 			throw new IllegalArgumentException ("Item does not exist");
@@ -51,6 +73,10 @@ public class MenuList {
 //		}
 //	}
 	
+	/**
+	 * Write a report of all the menu items in menu list with their details
+	 * @return report
+	 */
 	public String writeReport() {
 		String report = new String();
 		for(MenuItems entry: menuList.values()) {

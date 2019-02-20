@@ -2,24 +2,40 @@ package main;
 
 public class Customer {
 	
-	
+
+	/**
+	 * Variables for Customer
+	 * 
+	 * customerID : unique identifier for customer
+	 * member     : each customer has a different membership type
+	 * numberPrevious coffees   : how many coffees a customer has previously ordered
+	 * name                     : customer's name
+	 * 
+	 */
 	private int customerID; 
 	private MembershipType member; 
 	private int numberPreviousCoffees;
 	private String name;
 	
-	
+	/**
+	 * Constructor for creating a customer object
+	 * 
+	 * @param customerID
+	 * @param member
+	 * @param numberPreviousCoffees
+	 * @param name
+	 */
 	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
-		if(customerID < 1 || customerID > 1000) {
-			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 1000");
+		if(customerID < 1 || customerID > 2000000) {
+			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 2000000");
 		}
 		
 //		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
 //			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
 //		}
 		
-		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 9) {
-			throw new IllegalStateException("Number of previous coffees must be between 0 and 9");
+		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
+			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
 		}
 		
 		if(name.length() == 0) {
@@ -33,6 +49,10 @@ public class Customer {
 		this.name = name;
 	}
 
+	/**
+	 * Getters and setters for each of the instance variables
+	 * 
+	 */
 	public int getCustomerId() {
 		return customerID;
 	}
@@ -63,8 +83,5 @@ public class Customer {
 
 	public void setType(MembershipType member) {
 		this.member = member;
-	}
-	
-	
-	
+	}	
 }

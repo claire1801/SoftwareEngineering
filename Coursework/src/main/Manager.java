@@ -16,15 +16,19 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * Reads and out files and reports
+ * @author samth
+ *
+ */
 public class Manager {
 	
 
 	
 	public static OrderList orderList = new OrderList();
-	public static MenuList menuList;
-	//public static StaffList staffList = new StaffList();
-	public static CustomerList customerList;
+	public static MenuList menuList = new MenuList();
+	public static StaffList staffList = new StaffList();
+	public static CustomerList customerList = new CustomerList();
 	public static Basket basket = new Basket();
 	
 	
@@ -37,14 +41,15 @@ public class Manager {
 	 * @throws FileNotFoundException
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
+	 * @throws InvalidItemIdentifierException
 	 */
-	private static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	public static void readMenuItems(String fileName) throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, InvalidItemIdentifierException {
 		
-		TreeMap<String, MenuItems> treeMenu = new TreeMap<>();
+	
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
-		int counter = 0;
+		//int counter = 0; not used????
 		
 		while (scanner.hasNextLine()) {
 			
@@ -62,25 +67,24 @@ public class Manager {
 				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("Drink");
 				//System.out.println(item[0]);
-				treeMenu.put(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			else if(item[1].substring(0, 5).equals("MEALS")) {
 				MenuItems newMenuItem = new Meals(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("meal");
-				treeMenu.put(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			else if(item[1].substring(0, 5).equals("SNACK")) {
 				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("snack");
-				treeMenu.put(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
-			counter += 1;
+			//counter += 1;
 			//System.out.println(counter);
 			
 		//	menuList.addItem(newMenuItem);
 		}
 		scanner.close();
-		menuList = new MenuList(treeMenu);
 	}
 	
 	/**
@@ -90,8 +94,10 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 * @throws ParseException
+	 * @throws InvalidCustomerIDException
+	 * @throws InvalidItemIdentifierException
 	 */
-	private static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException {
+	public static void readOrders(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException, ParseException, InvalidCustomerIDException, InvalidItemIdentifierException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
@@ -126,12 +132,10 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	private static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+	public static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
-		// using Singleton
-		StaffList staffList = StaffList.getInstance();
 		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -157,8 +161,8 @@ public class Manager {
 	 * @throws NumberFormatException
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	private static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
-		Hashtable<Integer, Customer> customersList = new Hashtable<>();
+	public static  void readCustomers(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
+		
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
@@ -187,17 +191,16 @@ public class Manager {
 			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
 			Customer newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
 			//System.out.println(newCustomer.isMember());
-			customersList.put(ID,newCustomer);//name?
+			customerList.addCustomer(ID,newCustomer);//name?
 
 		}
 		scanner.close();
-		customerList = new CustomerList(customersList);
 	}
 	
 
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
 		try {
 			readCustomers("customerList.txt");
 			readStaff("StaffList.txt");
@@ -308,10 +311,10 @@ public class Manager {
 		String details = "Summary of Cafe\n";
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
-		details += "In total there have been " + sales + "orders made.\n";
-		details += "This gives a total income of " + income + " (Â£)\n\n";
-		details += "The following is a full list of all items in the menu:\n";
-		details += menuList.writeReport();
+		details += "In total there have been " + sales + " orders made.\n";
+		details += "This gives a total income of " + income + " (£)\n\n";
+		details += "The following is a full list of all items Ordered:\n";
+		details += orderList.writeReport();
 		
 		printToFile(filename, details);
 		

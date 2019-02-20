@@ -20,11 +20,12 @@ public class TestCustomerList {
     // ensures we have a new B for every test
     @Before
     public void setUp() throws Exception {
-    	Hashtable<Integer, Customer> list = new Hashtable<>();
+    	//Hashtable<Integer, Customer> list = new Hashtable<>();
     	
     	Customer newCustomer = new Customer(1,MembershipType.MEMBER,1,"sam");
-    	list.put(1, newCustomer);
-        b = new CustomerList(list);
+    	//list.put(1, newCustomer);
+        b = new CustomerList();
+        b.addCustomer(1, newCustomer);
     }
 
     @Test

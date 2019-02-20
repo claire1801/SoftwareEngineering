@@ -1,19 +1,37 @@
 package main;
 import java.util.Hashtable;
-import java.util.Map;
-import java.util.Map.Entry;
+
 
 public class CustomerList {
+	
+	/**
+	 * Variable for Customer List class
+	 * 
+	 * customerList : List of customers with an integer as the key and a customer object for the value
+	 */
 	Hashtable<Integer, Customer> customerList;
 
-	public CustomerList(Hashtable<Integer, Customer> customerList) {
-		this.customerList = customerList;
-	}
 
+	/**
+	 * Constructor for creating a hash table for customer list
+	 */
+	public CustomerList() {
+		customerList = new Hashtable<Integer, Customer> ();
+	}
+	
+	/**
+	 * Getter for returning the customer list
+	 * @return customerList
+	 */
 	public Hashtable<Integer, Customer> getCustomerList() {
 		return customerList;
 	}
 
+	/**
+	 * Add a customer to customer list
+	 * @param key
+	 * @param value
+	 */
 	public void addCustomer(Integer key, Customer value) {
 		customerList.put(key, value);
 		if(value == null) {
@@ -21,15 +39,22 @@ public class CustomerList {
 		}
 		if(key == null) {
 			throw new IllegalArgumentException ("Key must contain a customer ID");
-		}
-		
-		
+		}	
 	}
 
+	/**
+	 * Get a customer from the list
+	 * @param key
+	 * @return key
+	 */
 	public Customer getCustomer(Integer key) {
         return customerList.get(key);
 	}
 	
+	/**
+	 * Remove a customer from the list
+	 * @param key
+	 */
 	public void removeCustomer(Integer key) {
 		
 		if (customerList.containsKey(key)) {
@@ -39,9 +64,25 @@ public class CustomerList {
 			throw new IllegalArgumentException ("Customer ID doesn't exist");
 		}
 	}  
+	/**
+	 * does customer exist
+	 * @param key - the ID 
+	 * @return true , false
+	 */
+	public boolean customerExists(int key) {
+		if(customerList.containsKey(key)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	
-	
+	/**
+	 * Write a report of all the customers in customer list with their details
+	 * @return report
+	 */
 	public String writeReport() {
 		String report = new String();
 		
@@ -49,9 +90,7 @@ public class CustomerList {
 			report += customer.getName() + "/";
 			report += customer.getCustomerId() + "/";
 			report += customer.getNumberPreviousCoffees()+ "/";
-			report += customer.getType() + "\n";
-			
-			
+			report += customer.getType() + "\n";	
 		}
 //		for(Entry<Integer, Customer> customer : customerList.entrySet()){
 //		//report += customer.getValue();
@@ -65,8 +104,6 @@ public class CustomerList {
 		return report;
 				
 	}
-	
-
-
 }
+
 

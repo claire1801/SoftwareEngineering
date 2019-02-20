@@ -1,9 +1,10 @@
-
+package test;
 import static org.junit.jupiter.api.Assertions.*;
+
+
 import main.Staff;
 import main.StaffList;
 
-import java.util.Hashtable;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

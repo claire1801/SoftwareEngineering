@@ -11,7 +11,11 @@ import java.util.ArrayList;
 public class OrderList {
 	
 	
-	private ArrayList<Order> orderList = new ArrayList<Order>();
+	private ArrayList<Order> orderList;
+	
+	public OrderList() {
+		orderList = new ArrayList<Order>();
+	}
 	
 	public ArrayList<Order> getOrderList() {
 		String message= "";
@@ -72,9 +76,9 @@ public class OrderList {
 			report += "/";
 			report += order.getItemID();
 			report += "/";
-			report += order.getCost();
+			report += String.format("%,.2f",order.getCost());
 			report += "/";
-			report += order.getDiscountAmount();
+			report += String.format("%,.2f", order.getDiscountAmount());
 			report += "\n";
 		}
 

@@ -2,8 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import main.Order;
-//import main.OrderList;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 class OrderTest {
 	
-	private String orderID = "0001";
+	private int orderID = 0001;
 	private int customerID = 123;
 	private Timestamp timestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
 	private String itemID = "FOOD123";
@@ -61,8 +60,8 @@ class OrderTest {
 	
 	@Test
 	public void testSetOrderID() {
-		order.setOrderID("4567");
-		assertEquals("4567", order.getOrderID());
+		order.setOrderID(4567);
+		assertEquals(4567, order.getOrderID(), 0);
 	}
 
 	@Test

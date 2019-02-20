@@ -10,18 +10,15 @@ import java.util.Hashtable;
 
 public class StaffList {
 
-	private Hashtable<Integer, Staff> staffList;
+	public Hashtable<Integer, Staff> staffList;
 	
-	// for Singleton
-	private static StaffList list = new StaffList();
 	
-	private StaffList() {
+	public StaffList() {
 		staffList = new Hashtable<Integer, Staff> ();		
 	}
 	
-	// for Singleton
-	public static StaffList getInstance() {
-		return list;
+	public Hashtable<Integer, Staff> getStaffList() {
+		return staffList;
 	}
 	
 	public void addStaffToList(Staff staff) {
