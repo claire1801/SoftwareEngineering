@@ -1,32 +1,20 @@
 package test;
 
+import static org.junit.jupiter.api.Assertions.*;
+import main.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import main.Customer;
-//import main.CustomerList;
-import main.MembershipType;
 
-import static org.junit.Assert.*;
-
-import java.util.Hashtable;
-
-public class TestCustomer {
-
+class TestCustomer {
 	private Customer newCustomer;
+	@BeforeEach 
+	public void setup() {
+		 newCustomer = new Customer(1,MembershipType.MEMBER,1,"sam");
 
-    // method will be called before EVERY test.
-    // ensures we have a new B for every test
-    @Before
-    public void setUp() throws Exception {
-    	Hashtable<Integer, Customer> list = new Hashtable<>();
-    	
-    	 newCustomer = new Customer(1,MembershipType.MEMBER,1,"sam");
-
-    }
-
-    @Test
+	}
+	@Test
     public void test_getID() {
         // the message (1st parameter is optional)
     	
@@ -50,8 +38,17 @@ public class TestCustomer {
     	newCustomer.setNumberPreviousCoffees(4);
     	assertEquals(4,newCustomer.getNumberPreviousCoffees());
     }
+    @Test
+    public void test_getandsetname() {
+        // the message (1st parameter is optional)
+    	newCustomer.setName("sam2");
+    	assertEquals("sam2",newCustomer.getName());
+    }
+    @Test
+    public void test_SetandGetMember() {
+        // the message (1st parameter is optional)
+    	newCustomer.setType(MembershipType.STUDENT);
+    	assertEquals(MembershipType.STUDENT,newCustomer.getType());
+    }
 
-
-
- 
 }

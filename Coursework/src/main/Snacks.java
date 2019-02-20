@@ -1,11 +1,12 @@
 package main;
-//package cafe;
+
 
 public class Snacks extends MenuItems {
 
-	public Snacks(String name, String id, double cost, String desc, String algns) {
+	public Snacks(String name, String id, double cost, String desc, String algns) throws InvalidItemIdentifierException {
 		super(name, id, cost, desc, algns);
 		
 	}
 
 }
+
