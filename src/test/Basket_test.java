@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import java.sql.Timestamp;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.junit.Assert;
@@ -89,6 +89,17 @@ class Basket_test {
 		catch (InvalidItemIdentifierException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void TestgetItemsInBasket()
+	{
+		basket.addItemToUnconfirmedOrder(item1);
+		Iterable<MenuItems> actual = basket.getItemsInBasket();
+		ArrayList<MenuItems> expected = new ArrayList<MenuItems>();
+		expected.add(item1);
+		
+		Assert.assertEquals(expected, actual);
 	}
 
 	
