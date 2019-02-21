@@ -129,15 +129,19 @@ public class Basket {
 		int previousCoffees = customer.getNumberPreviousCoffees();
 		for(MenuItems item : unconfirmedOrder) 
 		{
-			if(item.getID().substring(0, 5).equals("COFEE") && previousCoffees == 4) 
-			{
-				coffeeLoyaltyDiscount += item.getCost();
-				customer.setNumberPreviousCoffees(0);
-			} 
-			else 
-			{
-				customer.setNumberPreviousCoffees(previousCoffees + 1);
+			previousCoffees = customer.getNumberPreviousCoffees();
+			if(item.getID().substring(0, 5).equals("COFEE") ) {
+				if( previousCoffees == 4) 
+				{
+					coffeeLoyaltyDiscount += item.getCost();
+					customer.setNumberPreviousCoffees(0);
+				} 
+				else 
+				{
+					customer.setNumberPreviousCoffees(previousCoffees + 1);
+				}
 			}
+			
 		}
 		discount += coffeeLoyaltyDiscount;
 	}
