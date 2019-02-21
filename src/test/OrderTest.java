@@ -18,12 +18,13 @@ class OrderTest {
 	private String itemID = "FOOD123";
 	private double cost = 1.50;
 	private double discountAmount = 0.10;
+	private int staffID = 1;
 
 	private Order order;
 	
 	@BeforeEach
 	public void setup() {
-	order = new Order(orderID, customerID, timestamp, itemID, cost, discountAmount);
+	order = new Order(orderID, customerID, timestamp, itemID, cost, discountAmount, staffID);
 	}
 	
 	
@@ -56,6 +57,11 @@ class OrderTest {
 	@Test
 	void testGetDiscountAmount() {
 		assertEquals(discountAmount,order.getDiscountAmount(), 0);
+	}
+	
+	@Test
+	void testGetStaffID() {
+		assertEquals(staffID, order.getStaffID(), 0);
 	}
 	
 	@Test
