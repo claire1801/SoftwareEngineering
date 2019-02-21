@@ -89,53 +89,8 @@ class Basket_test {
 		catch (InvalidItemIdentifierException e) {
 			e.printStackTrace();
 		}
-//		Manager.customerList.addCustomer(1, customer1);
-//		Manager.customerList.addCustomer(16, customer16);
 	}
-	@Test
-	public void itest()
-	{
-		int val = 10;
-		assertEquals(val,i);
-	}
-	@Test
-	public void testCustomerNotNull()
-	{
-		try {
-		customer16 = new Customer(16, MembershipType.STUDENT, 4, "Scarlett Gillespie");
-		assertNotNull(customer16);
-		}catch(InvalidCustomerIDException e)
-		{
-			e.printStackTrace();
-		}
-	}
-//	@Test
-//	public void TestaddItemToUnconfirmedOrder() 
-//	{
-//		basket.addItemToUnconfirmedOrder(item1);
-//		//assertEquals(1,basket.getSize());	
-//	}
-	
-//	@Test
-//	public void TestclearBasket()
-//	{
-//		basket.clearBasket();
-//		//assertEquals(0,basket.getSize());
-//	}
-	
-//	@Test
-//	public void TestsetCurrentCustomerID()
-//	{
-//		basket.setCurrentCustomerID(1);
-//		//assertEquals(1,basket.getCurrentCustomerID());
-//	}
-	
-//	@Test
-//	public void TestsetCurrentStaffID()
-//	{
-//		basket.setCurrentStaffID(2);
-//		//assertEquals(2,basket.getCurrentStaffID());
-//	}
+
 	
 	@Test
 	public void TestgetTotalDiscountForMealDeal()
