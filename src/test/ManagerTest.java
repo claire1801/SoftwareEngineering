@@ -1,7 +1,7 @@
 package test;
 
 import org.junit.jupiter.api.Test;
-
+import main.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -51,7 +51,7 @@ public class ManagerTest {
 				return;
 			}
 			
-			assertEquals(Manager.customerList.customerList.size(), lineCount);
+			assertEquals(Manager.customerList.getSize(), lineCount);
 			
 		
 		}
