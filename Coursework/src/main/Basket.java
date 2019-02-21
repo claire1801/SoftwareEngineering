@@ -2,6 +2,7 @@ package main;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,9 +16,7 @@ import java.util.TreeMap;
 
 
 public class Basket {
-	
 
-	
 	/**
 	 * Global variable used in the Basket class
 	 * 
@@ -40,8 +39,12 @@ public class Basket {
 	
 
 
-
-	public Basket() {unconfirmedOrder = new ArrayList<MenuItems> ();
+	/**
+	 * 
+	 * Simple Basket constructor of ArrayList
+	 */
+	public Basket() {
+		unconfirmedOrder = new ArrayList<MenuItems> ();
 	}
 		
 	
@@ -83,76 +86,14 @@ public class Basket {
 		this.currentStaffID = id;
 	}
 	
-//	/**
-//	 * first check if there are qualifying meal deals in the basket (and determines any discount)
-//	 * secondly, checks the customer coffee loyalty scheme (and determines any discount)
-//	 * thirdly, determines 'member' discounts
-//	 *
-//	 * @return discount, total value of discount to be applied
-//	 */
-// 	public double getDiscount() { //could possibly be broken down into smaller chunks/different methods/ discount class at later stage
-//		
-//		int countOfFoodItems = 0, countOfSoftDrinks = 0, countOfSnacks = 0; // counters for the meal deal discount
-//		
-//		// discounts
-//		double mealDealDiscount = 0;
-//		double coffeeLoyaltyDiscount = 0;
-//		double memberDiscount = 0;
-//		
-//		// cost of meal deal items without discount
-//		double unDiscountedCostForMealDealItems = 0;
-//		
-//		// get the customer from the customer list	    // manager? is this how the customer list should be retrieved, not sure
-//		// will need to get customer ID somehow
-//		Customer customer = Manager.customerList.getCustomer(currentCustomerID);  
-//		
-//		
-//		for (MenuItems item : unconfirmedOrder) {
-//
-//			// determine number of qualifying meal deals
-//			if (unconfirmedOrder.size() > 2) {
-//				// possible sub function here at later point, currently coded following the plan
-//				//could also consider Orders holding MenuItem objects rather than just ID 
-//				if(item.getID().substring(0, 5).equals("MEALS")) {
-//					countOfFoodItems++;
-//					unDiscountedCostForMealDealItems += item.getCost();
-//				}
-//				else if(item.getID().substring(0, 5).equals("DRINK")) {
-//					countOfSoftDrinks++;
-//					unDiscountedCostForMealDealItems += item.getCost();
-//				}
-//				else if(item.getID().substring(0, 5).equals("SNACK")) {
-//					countOfSnacks++;
-//					unDiscountedCostForMealDealItems += item.getCost();
-//				}
-//			}
-//
-//			// coffee loyalty scheme discount
-//			// would be nice to maybe break these into sub functions at later point, although may mean need for globals.      
-//			// this.coffeeLoyaltyCard(customer, item);
-//			if(item.getID().substring(0, 5).equals("COFEE") && customer.getNumberPreviousCoffees() == 4) {
-//				coffeeLoyaltyDiscount += item.getCost();
-//				customer.setNumberPreviousCoffees(0);
-//			} else {
-//				customer.setNumberPreviousCoffees(customer.getNumberPreviousCoffees() + 1);
-//			}
-//		}
-//
-//		// back to meal deals now we are outside the for loop
-//		int numberOfFullMealDeals = Math.min(countOfFoodItems, Math.min(countOfSoftDrinks, countOfSnacks));
-//		mealDealDiscount = unDiscountedCostForMealDealItems - (numberOfFullMealDeals*MEAL_DEAL_DISCOUNT);
-//		
-//		// members discount
-//		double tempDiscountedBill = unDiscountedBill - mealDealDiscount - coffeeLoyaltyDiscount;
-//		memberDiscount = customer.getType().getDiscount() * tempDiscountedBill;
-//
-//		
-//		// total discount
-//		discount = mealDealDiscount + coffeeLoyaltyDiscount + memberDiscount;
-//		
-//		return discount;
-//	}
-	
+	/**
+	 * gets the basket arraylist as an iterable list
+	 * @return iterable basket list
+	 */
+	public Iterable<MenuItems> getItemsInBasket(){
+		return unconfirmedOrder;
+	}
+		
  	
  	/**
  	 * 
@@ -188,29 +129,32 @@ public class Basket {
 		int previousCoffees = customer.getNumberPreviousCoffees();
 		for(MenuItems item : unconfirmedOrder) 
 		{
-			if(item.getID().substring(0, 5).equals("COFEE") && previousCoffees == 4) 
-			{
-				coffeeLoyaltyDiscount += item.getCost();
-				customer.setNumberPreviousCoffees(0);
-			} 
-			else 
-			{
-				customer.setNumberPreviousCoffees(previousCoffees + 1);
+			previousCoffees = customer.getNumberPreviousCoffees();
+			if(item.getID().substring(0, 5).equals("COFEE") ) {
+				if( previousCoffees == 4) 
+				{
+					coffeeLoyaltyDiscount += item.getCost();
+					customer.setNumberPreviousCoffees(0);
+				} 
+				else 
+				{
+					customer.setNumberPreviousCoffees(previousCoffees + 1);
+				}
 			}
+			
 		}
 		discount += coffeeLoyaltyDiscount;
 	}
 	
 	/**
 	 * 
-	 * 
-	 *gets value of discount returned after member type reduction
+	 * gets value of discount returned after member type reduction
 	 */
 	private void getMemberDiscount() {
 		double tempDiscountedBill = unDiscountedBill - discount;
 		Customer customer = Manager.customerList.getCustomer(currentCustomerID);	
 		double memberDiscount = customer.getType().getDiscount() * tempDiscountedBill;
-		discount += memberDiscount; 
+		discount += memberDiscount;
 	}
 	
 	/**
@@ -218,7 +162,7 @@ public class Basket {
 	 * 
 	 * @return discount
 	 */
-	public double getTotalDisocunt() {
+	public double getTotalDiscount() {
 		this.getMealDealDiscount();
 		this.getCoffeeDiscount();
 		this.getMemberDiscount();
@@ -247,7 +191,7 @@ public class Basket {
 		for (MenuItems item: unconfirmedOrder) {
 			int lastOrderID = Manager.orderList.totalSales(); //total sales returns relative size
 			int id = lastOrderID ++;
-			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems);
+			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems,this.currentCustomerID);
 			// note at some point we should probably include staff id in with orders too
 			Manager.orderList.addOrder(newOrder);  
 		}
