@@ -16,20 +16,20 @@ public class MenuList {
 		menuList = new TreeMap<String, MenuItems> ();
 	}
 	
-	/**
-	 *  Getter for returning the menu list
-	 * @return menuList
-	 */
-	public TreeMap<String, MenuItems> getMenuList() { // I don't really understand the point of this method
-		String message = "";
-		try { 
-			return menuList; 
-		} catch (NullPointerException e) {
-			message = e.getMessage() + "Could not get menuList";	
-			System.out.println(message); 
-			return null;
-		}
-	}
+//	/**
+//	 *  Getter for returning the menu list
+//	 * @return menuList
+//	 */
+//	public TreeMap<String, MenuItems> getMenuList() { // I don't really understand the point of this method
+//		String message = "";
+//		try { 
+//			return menuList; 
+//		} catch (NullPointerException e) {
+//			message = e.getMessage() + "Could not get menuList";	
+//			System.out.println(message); 
+//			return null;
+//		}
+//	}
 
 	/**
 	 * Add menu items to menu list 
@@ -64,14 +64,27 @@ public class MenuList {
 		} 
 		menuList.remove(key);
 	}
-
-	// commented method out
-	// this method isn't used anywhere ever and will print out the address space of the object
-//	public void printAll() {
-//		for (Map.Entry<String, MenuItems> entry : menuList.entrySet()) {
-//     	System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-//		}
-//	}
+	
+	
+	/**
+	 * method for returning the number of items that are currently on the Menu
+	 * 
+	 * @return the size of the menu, i.e. number of items
+	 */
+	public int getNumberofMenuItemsInList() {
+		return menuList.size();
+	}
+	
+	/**
+	 * Allows other classes to traverse the items in the menu list
+	 * 
+	 * @return
+	 */
+	public Iterable<MenuItems> getAllMenuItems() {
+		return menuList.values();
+	}
+	
+	
 	
 	/**
 	 * Write a report of all the menu items in menu list with their details

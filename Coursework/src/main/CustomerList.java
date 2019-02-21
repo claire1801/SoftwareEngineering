@@ -33,13 +33,15 @@ public class CustomerList {
 	 * @param value
 	 */
 	public void addCustomer(Integer key, Customer value) {
-		customerList.put(key, value);
+		
 		if(value == null) {
 			throw new IllegalArgumentException ("Can not add a new customer as not all the details are provided");
 		}
-		if(key == null) {
+		else if(key == null) {
 			throw new IllegalArgumentException ("Key must contain a customer ID");
-		}	
+		}	else {
+			customerList.put(key, value);
+		}
 	}
 
 	/**

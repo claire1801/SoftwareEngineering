@@ -24,29 +24,28 @@ public class Customer {
 	 * @param member
 	 * @param numberPreviousCoffees
 	 * @param name
+	 * @throws InvalidCustomerIDException 
 	 */
-	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) {
-		if(customerID < 1 || customerID > 2000000) {
-			throw new IllegalStateException("Customer ID is not valid, must be between 1 and 2000000");
-		}
+	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) throws InvalidCustomerIDException {
+		
 		
 //		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
 //			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
 //		}
 		
-		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
-			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
-		}
 		
-		if(name.length() == 0) {
-         		throw new IllegalStateException("Name can not be blank");
-		}
+		
+		this.setName(name);
+		this.setNumberPreviousCoffees(numberPreviousCoffees);
+		
+		this.setType(member);
+		this.setCustomerId(customerID);
 		
 	
-		this.customerID = customerID;
-		this.member = member;
-		this.numberPreviousCoffees = numberPreviousCoffees;
-		this.name = name;
+//		this.customerID = customerID;
+//		this.member = member;
+//		this.numberPreviousCoffees = numberPreviousCoffees;
+//		this.name = name;
 	}
 
 	/**
@@ -56,9 +55,21 @@ public class Customer {
 	public int getCustomerId() {
 		return customerID;
 	}
-
-	public void setCustomerId(int customerId) {
-		this.customerID = customerId;
+	
+	
+	/**
+	 * set customer ID
+	 * @param customerId
+	 * @throws InvalidCustomerIDException 
+	 */
+	
+	public void setCustomerId(int customerId) throws InvalidCustomerIDException {
+		if(customerId < 1 || customerId > 2000000) {
+			throw new InvalidCustomerIDException("Customer ID is not valid, must be between 1 and 2000000");
+		}else {
+			this.customerID = customerId;
+		}
+		
 	}
 
 	public int getNumberPreviousCoffees() {
@@ -66,7 +77,12 @@ public class Customer {
 	}
 
 	public void setNumberPreviousCoffees(int numberPreviousCoffees) {
-		this.numberPreviousCoffees = numberPreviousCoffees;
+		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
+			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
+		}else {
+			this.numberPreviousCoffees = numberPreviousCoffees;
+		}
+		
 	}
 	
 	public String getName() {
@@ -74,7 +90,12 @@ public class Customer {
 	}
 	
 	public void setName(String name) {
-		this.name = name;
+		if(name.length() == 0) {
+     		throw new IllegalStateException("Name can not be blank");
+		}else {
+			this.name = name;
+		}
+		
 	}
 
 	public MembershipType getType() {
