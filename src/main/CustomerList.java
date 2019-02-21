@@ -79,6 +79,9 @@ public class CustomerList {
 			return false;
 		}
 	}
+	public int getSize() {
+		return customerList.size();
+	}
 	
 	
 	/**
